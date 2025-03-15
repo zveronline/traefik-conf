@@ -17,15 +17,23 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
-    traefik-swarm-http:
+
+    traefik-swarm-media-http:
       entryPoints:
         - web
-        - websecure
       priority: 2000
       service: traefik-swarm-http
       rule: "Host(`file.zveronline.ru`) || Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`)"
       middlewares:
-        - default@file
+        - default2@file
+        
+    traefik-swarm-media:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`file.zveronline.ru`) || Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`)"
+      middlewares:
+        - default2@file
       tls:
         certResolver: acme-dns
         domains:
