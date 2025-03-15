@@ -1,0 +1,41 @@
+http:
+  # Add the router
+  routers:
+    sto:
+      entryPoints:
+        - websecure
+      service: sto
+      rule: "Host(`sto.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    sto3:
+      entryPoints:
+        - websecure
+      service: sto3
+      rule: "Host(`sto3.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+  # Add the service
+  services:
+    sto:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.100/
+        passHostHeader: true
+    sto3:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.102/
+        passHostHeader: true

@@ -1,0 +1,31 @@
+http:
+  # Add the router
+  routers:
+    lamp-http:
+      entryPoints:
+        - web
+      priority: 2000
+      service: lamp
+      rule: "Host(`lamp.z-network.ru`)"
+      middlewares:
+        - default@file
+    lamp:
+      entryPoints:
+        - websecure
+      service: lamp
+      rule: "Host(`lamp.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+  # Add the service
+  services:
+    lamp:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.6:12515/
+        passHostHeader: false

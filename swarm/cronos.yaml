@@ -1,0 +1,24 @@
+http:
+  # Add the router
+  routers:
+    cronos:
+      entryPoints:
+        - websecure
+      service: cronos
+      rule: "Host(`cronos.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+
+  # Add the service
+  services:
+    sto:
+      loadBalancer:
+        servers:
+        - url: https://10.3.1.0/
+        passHostHeader: true
