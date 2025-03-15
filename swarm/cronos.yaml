@@ -8,6 +8,7 @@ http:
       rule: "Host(`cronos.z-network.ru`)"
       middlewares:
         - default@file
+#        - exceptions@swarm
       tls:
         certResolver: acme-dns
         domains:
@@ -17,7 +18,7 @@ http:
 
   # Add the service
   services:
-    sto:
+    cronos:
       loadBalancer:
         servers:
         - url: https://10.3.1.0/

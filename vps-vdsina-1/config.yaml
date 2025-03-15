@@ -17,7 +17,7 @@ http:
       chain:
         middlewares:
           - default-security-headers
-          - exceptions@swarm
+          - error-pages
           - gzip
 
     # Add automatically some security headers
@@ -36,12 +36,12 @@ http:
 
     # Serve the error pages when the status is included inside the following ranges
     # Use with traefik.http.routers.myRouter.middlewares: "error-pages@file"
-#    error-pages:
-#      errors:
-#        query: "/{status}.html"
-#        service: traefik-error-pages
-#        status:
-#          - "400-599"
+    error-pages:
+      errors:
+        query: "/{status}.html"
+        service: traefik-error-pages
+        status:
+          - "400-599"
 
     # Enables the GZIP compression (https://docs.traefik.io/middlewares/compress/)
     #   if the response body is larger than 1400 bytes
@@ -51,31 +51,12 @@ http:
     gzip:
       compress: {}
 
-  routers:
-    exceptions:
-      entryPoints:
-        - websecure
-      service: error-pages-service@swarm
-      rule: "HostRegexp(`{catchall:.*}`)"
-      priority: 1
-      middlewares:
-        - exceptions@swarm
-      tls:
-        certResolver: acme-dns
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
-
-#  services:
+  services:
     # Error pages
-#    traefik-error-pages:
-#      loadBalancer:
-#        servers:
-#          - url: "https://error.z-network.ru/"
+    traefik-error-pages:
+      loadBalancer:
+        servers:
+          - url: "https://error.z-network.ru/"
 
 
 # See https://doc.traefik.io/traefik/https/tls/
