@@ -1,0 +1,50 @@
+http:
+  # Add the router
+  routers:
+    traefik-swarm:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`docker.z-network.ru`) | Host(`cronos.z-network.ru`) | Host(`mattermost.zveronline.ru`) | Host(`gpt.zveronline.ru`)"
+      middlewares:
+        - default@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    traefik-swarm-http:
+      entryPoints:
+        - web
+        - websecure
+      priority: 2000
+      service: traefik-swarm-http
+      rule: "Host(`file.zveronline.ru`) | Host(`lamp.z-network.ru`) | Host(`torrserv.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+
+  # Add the service
+  services:
+    traefik-swarm:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.3:8443
+        passHostHeader: true
+    traefik-swarm-http:
+      loadBalancer:
+        servers:
+        - url: http://10.3.0.3:8480
+        passHostHeader: true

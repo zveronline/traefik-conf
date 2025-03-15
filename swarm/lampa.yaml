@@ -1,17 +1,11 @@
 http:
   # Add the router
   routers:
-    lamp-http:
-      entryPoints:
-        - web
-      priority: 2000
-      service: lamp
-      rule: "Host(`lamp.z-network.ru`)"
-      middlewares:
-        - default@file
     lamp:
       entryPoints:
+        - web
         - websecure
+      priority: 2000
       service: lamp
       rule: "Host(`lamp.z-network.ru`)"
       middlewares:
