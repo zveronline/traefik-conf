@@ -10,10 +10,22 @@ tcp:
       tls:
         passthrough: true
 
+    drive:
+      entryPoints:
+        - drive
+      service: drive
+      rule: "HostSNI(`*`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+
   # Add the service
   services:
     sto:
       loadBalancer:
         servers:
           - address: "10.3.0.100:5001"
-#        passHostHeader: true
+    drive:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.100:6690"
