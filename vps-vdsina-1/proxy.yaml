@@ -1,0 +1,19 @@
+tcp:
+  # Add the router
+  routers:
+    nnmclubto:
+      entryPoints:
+        - websecure
+      service: nnmclubto
+      rule: "HostSNI(`nnmclub.to`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+
+  # Add the service
+  services:
+    nnmclubto:
+      loadBalancer:
+        servers:
+          - url: https://nnmclub.to
+#        passHostHeader: true
