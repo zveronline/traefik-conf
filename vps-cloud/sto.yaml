@@ -16,4 +16,4 @@ tcp:
       loadBalancer:
         servers:
           - address: "10.3.0.100:5001"
-        passHostHeader: true
+#        passHostHeader: true
