@@ -15,5 +15,5 @@ tcp:
     nnmclubto:
       loadBalancer:
         servers:
-          - url: https://nnmclub.to
+          - address: https://nnmclub.to
 #        passHostHeader: true
