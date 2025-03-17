@@ -1,0 +1,19 @@
+http:
+  # Add the router
+  routers:
+    sto:
+      entryPoints:
+        - sto
+      service: sto
+      rule: "HostSNI(`sto.z-network.ru`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+
+  # Add the service
+  services:
+    sto:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.100:5001"
+        passHostHeader: true
