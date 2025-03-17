@@ -1,10 +1,10 @@
 tcp:
   # Add the router
   routers:
-    sto:
+    synology:
       entryPoints:
-        - sto
-      service: sto
+        - synology
+      service: synology
       rule: "HostSNI(`sto.z-network.ru`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
@@ -21,7 +21,7 @@ tcp:
 
   # Add the service
   services:
-    sto:
+    synology:
       loadBalancer:
         servers:
           - address: "10.3.0.100:5001"
