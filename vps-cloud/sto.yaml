@@ -1,4 +1,4 @@
-http:
+tcp::
   # Add the router
   routers:
     sto:
