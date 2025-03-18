@@ -24,7 +24,7 @@ udp:
       entryPoints:
         - rdp-udp
       service: vm-desktop
-      rule: "HostSNI(`*`)"
+      #rule: "HostSNI(`*`)"
       # will route TLS requests (and ignore non tls requests)
       #tls:
       #  passthrough: true
