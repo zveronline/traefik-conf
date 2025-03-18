@@ -16,3 +16,22 @@ tcp:
       loadBalancer:
         servers:
           - address: "10.3.1.2:3389"
+
+udp:
+  # Add the router
+  routers:
+    vm-desktop:
+      entryPoints:
+        - rdp-udp
+      service: vm-desktop
+      rule: "HostSNI(`*`)"
+      # will route TLS requests (and ignore non tls requests)
+      #tls:
+      #  passthrough: true
+
+  # Add the service
+  services:
+    vm-desktop:
+      loadBalancer:
+        servers:
+          - address: "10.3.1.2:3389"
