@@ -1,0 +1,43 @@
+http:
+  # Add the router
+  routers:
+    pbs:
+      entryPoints:
+        - websecure
+      service: pbs
+      rule: "Host(`pbs.z-network.ru`)"
+      middlewares:
+        - default2@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+
+  # Add the service
+  services:
+    pbs:
+      loadBalancer:
+        servers:
+          - url: https://10.3.1.10:8007
+        passHostHeader: true
+
+tcp:
+  # Add the router
+  routers:
+    pbs:
+      entryPoints:
+        - pbs
+      service: pbs
+      rule: "HostSNI(`pbs.z-network.ru`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+
+  # Add the service
+  services:
+    pbs:
+      loadBalancer:
+        servers:
+          - address: "10.3.1.10:8007"
