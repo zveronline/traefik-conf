@@ -1,9 +1,9 @@
-udp:
+tcp:
   # Add the router
   routers:
     vm-desktop:
       entryPoints:
-        - rdp-udp
+        - rdp
       service: vm-desktop
       rule: "HostSNI(`vm-desktop.z-network.ru`)"
       # will route TLS requests (and ignore non tls requests)
