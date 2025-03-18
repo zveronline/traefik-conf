@@ -30,7 +30,7 @@ tcp:
       entryPoints:
         - pbs
       service: pbs
-      rule: "HostSNI(`pbs.z-network.ru`)"
+      rule: "HostSNI(`pbs.z-network.ru`) || HostSNI(`home.z-network.ru`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
