@@ -49,10 +49,10 @@ http:
     traefik-swarm:
       loadBalancer:
         servers:
-          - url: https://10.3.0.3:8443
+          - url: https://10.3.0.3:443
         passHostHeader: true
     traefik-swarm-http:
       loadBalancer:
         servers:
-          - url: http://10.3.0.3:8480
+          - url: http://10.3.0.3:80
         passHostHeader: true
