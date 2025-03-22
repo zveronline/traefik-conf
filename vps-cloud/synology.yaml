@@ -10,6 +10,15 @@ tcp:
       tls:
         passthrough: true
 
+    synology-webdav:
+      entryPoints:
+        - synology-webdav
+      service: synology-webdav
+      rule: "HostSNI(`sto.z-network.ru`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+
     drive:
       entryPoints:
         - drive
@@ -25,6 +34,10 @@ tcp:
       loadBalancer:
         servers:
           - address: "10.3.0.100:5001"
+    synology-webdav:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.100:5006"
     drive:
       loadBalancer:
         servers:
