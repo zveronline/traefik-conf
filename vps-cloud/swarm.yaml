@@ -25,7 +25,7 @@ http:
       service: traefik-swarm-http
       rule: "Host(`file.zveronline.ru`) || Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`)"
       middlewares:
-        - default2@file
+        - error-pages@file
         
     traefik-swarm-media:
       entryPoints:
@@ -33,7 +33,7 @@ http:
       service: traefik-swarm
       rule: "Host(`file.zveronline.ru`) || Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`)"
       middlewares:
-        - default2@file
+        - error-pages@file
       tls:
         certResolver: acme-dns
         domains:
