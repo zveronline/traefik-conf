@@ -7,7 +7,7 @@ http:
       service: pbs
       rule: "Host(`pbs.z-network.ru`)"
       middlewares:
-        - default2@file
+        - error-pages@file
       tls:
         certResolver: acme-dns
         domains:
