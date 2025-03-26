@@ -23,10 +23,10 @@ tcp:
       entryPoints:
         - drive
       service: drive
-      rule: "HostSNI(`sto.z-network.ru`)"
+      rule: "HostSNI(`*`)"
       # will route TLS requests (and ignore non tls requests)
-      tls:
-        passthrough: true
+      #tls:
+      #  passthrough: true
 
   # Add the service
   services:
