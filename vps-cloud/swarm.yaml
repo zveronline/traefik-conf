@@ -7,7 +7,8 @@ http:
       service: traefik-swarm
       rule: "Host(`docker.z-network.ru`) || Host(`cronos.z-network.ru`) || Host(`mattermost.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`peertube.zveronline.ru`)"
       middlewares:
-        - default@file
+        - gzip@file
+        - error-pages@file
       tls:
         certResolver: acme-dns
         domains:
