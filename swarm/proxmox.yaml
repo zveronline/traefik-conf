@@ -7,7 +7,7 @@ http:
       service: pve1
       rule: "Host(`pve1.z-network.ru`)"
       middlewares:
-        - default@file
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:
@@ -20,7 +20,7 @@ http:
       service: pbs
       rule: "Host(`pbs.z-network.ru`)"
       middlewares:
-        - default@file
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:

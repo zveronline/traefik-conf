@@ -7,7 +7,7 @@ http:
       service: ha
       rule: "Host(`ha.z-network.ru`)"
       middlewares:
-        - default@file
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:

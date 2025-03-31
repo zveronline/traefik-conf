@@ -7,7 +7,7 @@ http:
       service: sto
       rule: "Host(`sto.z-network.ru`)"
       middlewares:
-        - default@file
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:
@@ -20,7 +20,7 @@ http:
       service: sto3
       rule: "Host(`sto3.z-network.ru`)"
       middlewares:
-        - default@file
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:

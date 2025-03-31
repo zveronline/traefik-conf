@@ -1,11 +1,11 @@
 http:
   # Add the router
   routers:
-    cronos:
+    gateway:
       entryPoints:
         - websecure
-      service: cronos
-      rule: "Host(`cronos.z-network.ru`)"
+      service: gateway
+      rule: "Host(`gateway.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
@@ -17,8 +17,8 @@ http:
 
   # Add the service
   services:
-    cronos:
+    gateway:
       loadBalancer:
         servers:
-        - url: https://10.3.1.0/
+        - url: https://10.3.0.16:9096/
         passHostHeader: true

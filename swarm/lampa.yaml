@@ -9,7 +9,7 @@ http:
       service: lamp
       rule: "Host(`lamp.z-network.ru`)"
       middlewares:
-        - exceptions@swarm
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:
