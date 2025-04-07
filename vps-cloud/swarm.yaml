@@ -6,7 +6,7 @@ http:
         - websecure
 #      priority: 20
       service: traefik-swarm
-      rule: "Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`docker.z-network.ru`) || Host(`cronos.z-network.ru`) || Host(`mattermost.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`file.zveronline.ru`)"
+      rule: "Host(`lamp.z-network.ru`) || Host(`minio.z-network.ru`) || Host(`s3.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`docker.z-network.ru`) || Host(`cronos.z-network.ru`) || Host(`mattermost.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`file.zveronline.ru`)"
 #      rule: "Host(`*.z-network.ru`) || Host(`*.zveronline.ru`)"
       middlewares:
         - gzip@file
