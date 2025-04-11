@@ -5,9 +5,9 @@ http:
       entryPoints:
         - websecure
       service: pbs
-      rule: "Host(`pbs.z-network.ru`)"
+      rule: "Host(`pbs2.z-network.ru`)"
       middlewares:
-        - error-pages@file
+        - gzip@file
       tls:
         certResolver: acme-dns
         domains:
@@ -20,7 +20,7 @@ http:
     pbs:
       loadBalancer:
         servers:
-          - url: https://10.3.1.10:8007
+          - url: https://10.3.0.100:8007
         passHostHeader: true
 
 tcp:
@@ -30,7 +30,7 @@ tcp:
       entryPoints:
         - pbs
       service: pbs
-      rule: "HostSNI(`pbs.z-network.ru`) || HostSNI(`home.z-network.ru`)"
+      rule: "HostSNI(`pbs2.z-network.ru`) || HostSNI(`home.z-network.ru`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
@@ -40,4 +40,4 @@ tcp:
     pbs:
       loadBalancer:
         servers:
-          - address: "10.3.1.10:8007"
+          - address: "10.3.0.100:8007"
