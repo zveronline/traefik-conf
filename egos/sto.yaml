@@ -1,0 +1,23 @@
+http:
+  # Add the router
+  routers:
+    sto:
+      entryPoints:
+        - websecure
+      service: sto
+      rule: "Host(`sto.egos-vl.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "egos-vl.ru"
+            sans:
+              - "*.egos-vl.ru"
+  # Add the service
+  services:
+    sto:
+      loadBalancer:
+        servers:
+        - url: https://192.168.1.101/
+        passHostHeader: true
