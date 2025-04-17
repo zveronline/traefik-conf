@@ -1,10 +1,10 @@
 http:
   # Add the router
   routers:
-    pbs:
+    pbs2:
       entryPoints:
         - websecure
-      service: pbs
+      service: pbs2
       rule: "Host(`pbs2.z-network.ru`)"
       middlewares:
         - gzip@file
@@ -17,7 +17,7 @@ http:
 
   # Add the service
   services:
-    pbs:
+    pbs2:
       loadBalancer:
         servers:
           - url: https://10.3.0.100:8007
