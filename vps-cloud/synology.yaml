@@ -12,7 +12,7 @@ tcp:
     sto2:
       entryPoints:
         - synology
-      service: synology
+      service: sto2
       rule: "HostSNI(`sto2.z-network.ru`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
