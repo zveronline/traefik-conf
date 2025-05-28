@@ -9,7 +9,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
-
+    sto2:
+      entryPoints:
+        - synology
+      service: synology
+      rule: "HostSNI(`sto2.z-network.ru`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
     synology-webdav:
       entryPoints:
         - synology-webdav
@@ -34,6 +41,10 @@ tcp:
       loadBalancer:
         servers:
           - address: "10.3.0.100:5001"
+    sto2:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.99:5001"
     synology-webdav:
       loadBalancer:
         servers:
