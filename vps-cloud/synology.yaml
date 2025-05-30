@@ -1,22 +1,48 @@
-tcp:
+http:
   # Add the router
   routers:
-    synology:
+    sto:
       entryPoints:
         - synology
-      service: synology
-      rule: "HostSNI(`sto.z-network.ru`)"
-      # will route TLS requests (and ignore non tls requests)
+      service: sto
+      rule: "Host(`sto.z-network.ru`)"
+      middlewares:
+        - gzip@file
       tls:
-        passthrough: true
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     sto2:
       entryPoints:
         - synology
       service: sto2
-      rule: "HostSNI(`sto2.z-network.ru`)"
-      # will route TLS requests (and ignore non tls requests)
+      rule: "Host(`sto2.z-network.ru`)"
+      middlewares:
+        - gzip@file
       tls:
-        passthrough: true
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+
+  # Add the service
+  services:
+    sto:
+      loadBalancer:
+        servers:
+          - url: https://10.3.0.100:5001
+        passHostHeader: true
+    sto2:
+      loadBalancer:
+        servers:
+          - url: https://10.3.0.99:5001
+        passHostHeader: true
+tcp:
+  # Add the router
+  routers:
     synology-webdav:
       entryPoints:
         - synology-webdav
@@ -37,14 +63,6 @@ tcp:
 
   # Add the service
   services:
-    synology:
-      loadBalancer:
-        servers:
-          - address: "10.3.0.100:5001"
-    sto2:
-      loadBalancer:
-        servers:
-          - address: "10.3.0.99:5001"
     synology-webdav:
       loadBalancer:
         servers:
