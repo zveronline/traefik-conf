@@ -38,7 +38,7 @@ http:
     sto2:
       loadBalancer:
         servers:
-          - url: https://10.3.0.99:5001
+          - url: https://10.5.0.100:5001
         passHostHeader: true
 tcp:
   # Add the router
