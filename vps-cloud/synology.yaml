@@ -28,6 +28,20 @@ http:
             sans:
               - "*.z-network.ru"
 
+    tkm:
+      entryPoints:
+        - synology
+      service: tkm
+      rule: "Host(`tkm.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+
   # Add the service
   services:
     sto:
@@ -39,6 +53,11 @@ http:
       loadBalancer:
         servers:
           - url: https://10.5.0.100:5001
+        passHostHeader: true
+    tkm:
+      loadBalancer:
+        servers:
+          - url: https://10.242.228.155:5001
         passHostHeader: true
 tcp:
   # Add the router
