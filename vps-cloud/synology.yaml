@@ -112,8 +112,8 @@ http:
     tkm-ha:
       loadBalancer:
         servers:
-          - url: https://10.0.25.3:8123
-          - url: https://10.242.228.155:8123
+          - url: http://10.0.25.3:8123
+          - url: http://10.242.228.155:8123
         passHostHeader: true
 tcp:
   # Add the router
