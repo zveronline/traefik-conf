@@ -53,6 +53,32 @@ http:
           - main: "k3kw.ru"
             sans:
               - "*.k3kw.ru"
+    tkm-webdav:
+      entryPoints:
+        - websecure
+      service: tkm-webdav
+      rule: "Host(`wd.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "k3kw.ru"
+            sans:
+              - "*.k3kw.ru"
+    tkm-ha:
+      entryPoints:
+        - websecure
+      service: tkm-ha
+      rule: "Host(`ha.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "k3kw.ru"
+            sans:
+              - "*.k3kw.ru"
   # Add the service
   services:
     sto:
@@ -77,18 +103,21 @@ http:
           - url: https://10.0.25.3:7001
           - url: https://10.242.228.155:7001
         passHostHeader: true
+    tkm-webdav:
+      loadBalancer:
+        servers:
+          - url: https://10.0.25.3:5006
+          - url: https://10.242.228.155:5006
+        passHostHeader: true
+    tkm-ha:
+      loadBalancer:
+        servers:
+          - url: https://10.0.25.3:8123
+          - url: https://10.242.228.155:8123
+        passHostHeader: true
 tcp:
   # Add the router
   routers:
-    synology-webdav:
-      entryPoints:
-        - synology-webdav
-      service: synology-webdav
-      rule: "HostSNI(`sto.z-network.ru`)"
-      # will route TLS requests (and ignore non tls requests)
-      tls:
-        passthrough: true
-
     drive:
       entryPoints:
         - drive
@@ -100,10 +129,6 @@ tcp:
 
   # Add the service
   services:
-    synology-webdav:
-      loadBalancer:
-        servers:
-          - address: "10.3.0.100:5006"
     drive:
       loadBalancer:
         servers:
