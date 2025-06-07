@@ -44,7 +44,7 @@ http:
       entryPoints:
         - websecure
       service: tkms-443
-      rule: "Host(`s.k3kw.ru`)"
+      rule: "Host(`s.k3kw.ru`) || Host(`c.k3kw.ru`)"
       middlewares:
         - gzip@file
       tls:
