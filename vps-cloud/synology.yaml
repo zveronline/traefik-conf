@@ -14,10 +14,36 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    sto-443:
+      entryPoints:
+        - websecure
+      service: sto-443
+      rule: "Host(`sto.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     sto2:
       entryPoints:
         - synology
       service: sto2
+      rule: "Host(`sto2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    sto2-443:
+      entryPoints:
+        - websecure
+      service: sto2-443
       rule: "Host(`sto2.z-network.ru`)"
       middlewares:
         - gzip@file
@@ -99,10 +125,20 @@ http:
         servers:
           - url: https://10.3.0.100:5001
         passHostHeader: true
+    sto-443:
+      loadBalancer:
+        servers:
+          - url: https://10.3.0.100
+        passHostHeader: true
     sto2:
       loadBalancer:
         servers:
           - url: https://10.5.0.100:5001
+        passHostHeader: true
+    sto2-443:
+      loadBalancer:
+        servers:
+          - url: https://10.5.0.100
         passHostHeader: true
     tkms:
       loadBalancer:
