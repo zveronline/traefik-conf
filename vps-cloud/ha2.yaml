@@ -1,0 +1,24 @@
+http:
+  # Add the router
+  routers:
+    ha2:
+      entryPoints:
+        - websecure
+      service: ha2
+      rule: "Host(`ha2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+
+  # Add the service
+  services:
+    ha2:
+      loadBalancer:
+        servers:
+          - url: https://10.5.0.11:8123
+        passHostHeader: true
