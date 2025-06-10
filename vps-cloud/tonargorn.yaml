@@ -1,0 +1,18 @@
+http:
+  # Add the router
+  routers:
+    traefik-swarm-tonargorn:
+      entryPoints:
+        - websecure
+#      priority: 20
+      service: traefik-swarm
+      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      middlewares:
+        - gzip@file
+#        - error-pages@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "tonargorn.ru"
+            sans:
+              - "*.tonargorn.ru"
