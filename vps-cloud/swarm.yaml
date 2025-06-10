@@ -6,7 +6,7 @@ http:
         - websecure
 #      priority: 20
       service: traefik-swarm
-      rule: "Host(`lamp.z-network.ru`) || Host(`ha.z-network.ru`) || Host(`pass.zveronline.ru`) || Host(`zveronline.ru`) || Host(`www.zveronline.ru`) || Host(`radio.zveronline.ru`) || Host(`prowlarr.zveronline.ru`) || Host(`nextcloud.zveronline.ru`) || Host(`onlyoffice.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`mario.zveronline.ru`) || Host(`obsidian.z-network.ru`) || Host(`book.zveronline.ru`) || Host(`vscode.z-network.ru`) || Host(`minio.z-network.ru`) || Host(`s3.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`docker.z-network.ru`) || Host(`cronos.z-network.ru`) || Host(`pbs.z-network.ru`) || Host(`mattermost.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`ai.zveronline.ru`) || Host(`file.zveronline.ru`) || Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
+      rule: "Host(`cronos.z-network.ru`) || Host(`lamp.z-network.ru`) || Host(`ha.z-network.ru`) || Host(`obsidian.z-network.ru`) || Host(`pbs.z-network.ru`) || Host(`vscode.z-network.ru`) || Host(`minio.z-network.ru`) || Host(`s3.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`docker.z-network.ru`)"
 #      rule: "Host(`*.z-network.ru`) || Host(`*.zveronline.ru`)"
       middlewares:
         - gzip@file
@@ -17,12 +17,6 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
-          - main: "ordinary-minecraft.ru"
-            sans:
-              - "*.ordinary-minecraft.ru"
 
     traefik-swarm-http:
       entryPoints:
