@@ -23,7 +23,7 @@ http:
         - web
       priority: 2000
       service: traefik-swarm-http
-      rule: "Host(`file.zveronline.ru`) || Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
+      rule: "Host(`file.zveronline.ru`) || Host(`lamp.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`sessionserver.ordinary-minecraft.ru`) || Host(`prowlarr.zveronline.ru`)"
       middlewares:
         - gzip@file
 
