@@ -25,6 +25,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    tmdbapi:
+      entryPoints:
+        - websecure
+      service: tmdbapi
+      rule: "HostSNI(`api.themoviedb.org`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -40,3 +48,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "cub.red:443"
+    tmdbapi:
+      loadBalancer:
+        servers:
+          - address: "api.themoviedb.org:443"
