@@ -1,15 +1,22 @@
 tcp:
   # Add the router
   routers:
-    nnmclubto:
+    nnmclub:
       entryPoints:
         - websecure
-      service: nnmclubto
+      service: nnmclub
       rule: "HostSNI(`nnmclub.to`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
-
+    nnmstatic:
+      entryPoints:
+        - websecure
+      service: nnmstatic
+      rule: "HostSNI(`nnmstatic.win`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
     2ip:
       entryPoints:
         - websecure
@@ -21,10 +28,14 @@ tcp:
 
   # Add the service
   services:
-    nnmclubto:
+    nnmclub:
       loadBalancer:
         servers:
           - address: "nnmclub.to:443"
+    nnmstatic:
+      loadBalancer:
+        servers:
+          - address: "nnmstatic.win:443"
     2ip:
       loadBalancer:
         servers:
