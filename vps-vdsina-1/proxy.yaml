@@ -24,8 +24,8 @@ tcp:
     nnmclubto:
       loadBalancer:
         servers:
-          - address: https://nnmclub.to
+          - address: "nnmclub.to:443"
     2ip:
       loadBalancer:
         servers:
-          - address: https://2ip.ru
+          - address: "2ip.ru:443"
