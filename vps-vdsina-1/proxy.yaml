@@ -25,9 +25,7 @@ tcp:
       loadBalancer:
         servers:
           - address: https://nnmclub.to
-        passHostHeader: true
     2ip:
       loadBalancer:
         servers:
           - address: https://2ip.ru
-        passHostHeader: true
