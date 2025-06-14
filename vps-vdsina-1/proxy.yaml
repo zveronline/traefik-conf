@@ -17,11 +17,11 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
-    2ip:
+    cub:
       entryPoints:
         - websecure
-      service: 2ip
-      rule: "HostSNI(`2ip.ru`)"
+      service: cub
+      rule: "HostSNI(`cub.red`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
@@ -36,7 +36,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "nnmstatic.win:443"
-    2ip:
+    cub:
       loadBalancer:
         servers:
-          - address: "2ip.ru:443"
+          - address: "cub.red:443"
