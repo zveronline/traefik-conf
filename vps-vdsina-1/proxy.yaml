@@ -10,10 +10,24 @@ tcp:
       tls:
         passthrough: true
 
+    2ip:
+      entryPoints:
+        - websecure
+      service: 2ip
+      rule: "HostSNI(`2ip.ru`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+
   # Add the service
   services:
     nnmclubto:
       loadBalancer:
         servers:
           - address: https://nnmclub.to
-#        passHostHeader: true
+        passHostHeader: true
+    2ip:
+      loadBalancer:
+        servers:
+          - address: https://2ip.ru
+        passHostHeader: true
