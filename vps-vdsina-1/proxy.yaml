@@ -155,7 +155,7 @@ tcp:
       entryPoints:
         - websecure
       service: anidub
-      rule: "HostSNI(`anidub.today`)"
+      rule: "HostSNI(`anidub.today`) || HostSNIRegexp(`^.+\.anidub\.today$`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
