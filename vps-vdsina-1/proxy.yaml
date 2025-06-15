@@ -41,6 +41,14 @@ http:
       rule: "Host(`api.themoviedb.org`)"
       middlewares:
         - gzip@file
+    apianilibria:
+      entryPoints:
+        - web
+      priority: 2000
+      service: apianilibria
+      rule: "Host(`api.anilibria.tv`)"
+      middlewares:
+        - gzip@file
 
   # Add the service
   services:
@@ -68,6 +76,11 @@ http:
       loadBalancer:
         servers:
           - url: http://api.themoviedb.org
+        passHostHeader: true
+    apianilibria:
+      loadBalancer:
+        servers:
+          - url: http://api.anilibria.tv
         passHostHeader: true
 
 tcp:
