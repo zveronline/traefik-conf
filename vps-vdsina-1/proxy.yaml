@@ -25,11 +25,35 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    geocub:
+      entryPoints:
+        - websecure
+      service: cub
+      rule: "HostSNI(`geo.cub.red`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+    tmdbcub:
+      entryPoints:
+        - websecure
+      service: tmdbcub
+      rule: "HostSNI(`tmdb.cub.red`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
     tmdbapi:
       entryPoints:
         - websecure
       service: tmdbapi
       rule: "HostSNI(`api.themoviedb.org`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+    jacred:
+      entryPoints:
+        - websecure
+      service: jacred
+      rule: "HostSNI(`jacred.xyz`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
@@ -48,7 +72,15 @@ tcp:
       loadBalancer:
         servers:
           - address: "cub.red:443"
+    tmdbcub:
+      loadBalancer:
+        servers:
+          - address: "tmdb.cub.red:443"
     tmdbapi:
       loadBalancer:
         servers:
           - address: "api.themoviedb.org:443"
+    jacred:
+      loadBalancer:
+        servers:
+          - address: "jacred.xyz:443"
