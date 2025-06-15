@@ -147,7 +147,7 @@ tcp:
         - websecure
       service: anilibria
       rule: "HostSNI(`anilibria.tv`) || HostSNI(`www.anilibria.tv`) || HostSNI(`api.anilibria.tv`)"
-      # rule: "HostSNIRegexp(`^.+\.anilibria\.tv$`)"
+      # rule: "HostSNIRegexp(`^[a-z0-9-]+\\.anilibria\\.tv$`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
@@ -172,6 +172,14 @@ tcp:
         - websecure
       service: oaistatic
       rule: "HostSNI(`cdn.oaistatic.com`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+    4pda:
+      entryPoints:
+        - websecure
+      service: 4pda
+      rule: "HostSNI(`4pda.to`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
@@ -218,3 +226,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "cdn.oaistatic.com:443"
+    4pda:
+      loadBalancer:
+        servers:
+          - address: "4pda.to:443"
