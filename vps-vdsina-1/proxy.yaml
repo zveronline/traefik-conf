@@ -151,6 +151,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    anidub:
+      entryPoints:
+        - websecure
+      service: anidub
+      rule: "HostSNI(`anidub.today`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -182,3 +190,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "anilibria.tv:443"
+    anidub:
+      loadBalancer:
+        servers:
+          - address: "anidub.today:443"
