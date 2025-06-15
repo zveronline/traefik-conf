@@ -17,6 +17,30 @@ http:
       rule: "Host(`tmdb.cub.red`)"
       middlewares:
         - gzip@file
+    cub:
+      entryPoints:
+        - web
+      priority: 2000
+      service: cub
+      rule: "Host(`cub.red`)"
+      middlewares:
+        - gzip@file
+    geocub:
+      entryPoints:
+        - web
+      priority: 2000
+      service: geocub
+      rule: "Host(`geo.cub.red`)"
+      middlewares:
+        - gzip@file
+    tmdbapi:
+      entryPoints:
+        - web
+      priority: 2000
+      service: tmdbapi
+      rule: "Host(`api.themoviedb.org`)"
+      middlewares:
+        - gzip@file
 
   # Add the service
   services:
@@ -29,6 +53,21 @@ http:
       loadBalancer:
         servers:
           - url: http://tmdb.cub.red
+        passHostHeader: true
+    cub:
+      loadBalancer:
+        servers:
+          - url: http://cub.red
+        passHostHeader: true
+    geocub:
+      loadBalancer:
+        servers:
+          - url: http://geo.cub.red
+        passHostHeader: true
+    tmdbapi:
+      loadBalancer:
+        servers:
+          - url: http://api.themoviedb.org
         passHostHeader: true
 
 tcp:
