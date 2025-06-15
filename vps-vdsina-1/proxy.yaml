@@ -129,6 +129,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    anilibria:
+      entryPoints:
+        - websecure
+      service: anilibria
+      rule: "HostSNI(`anilibria.tv`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -156,3 +164,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "jacred.xyz:443"
+    anilibria:
+      loadBalancer:
+        servers:
+          - address: "anilibria.tv:443"
