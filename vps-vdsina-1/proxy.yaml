@@ -137,6 +137,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    apianilibria:
+      entryPoints:
+        - websecure
+      service: apianilibria
+      rule: "HostSNI(`api.anilibria.tv`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -168,3 +176,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "anilibria.tv:443"
+    apianilibria:
+      loadBalancer:
+        servers:
+          - address: "api.anilibria.tv:443"
