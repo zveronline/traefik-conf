@@ -146,7 +146,8 @@ tcp:
       entryPoints:
         - websecure
       service: anilibria
-      rule: "HostSNIRegexp(`^.+\.anilibria\.tv$`)"
+      rule: "HostSNI(`anilibria.tv`) || HostSNI(`www.anilibria.tv`) || HostSNI(`api.anilibria.tv`)"
+      # rule: "HostSNIRegexp(`^.+\.anilibria\.tv$`)"
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
