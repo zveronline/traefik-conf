@@ -151,6 +151,22 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    chatgpt:
+      entryPoints:
+        - websecure
+      service: chatgpt
+      rule: "HostSNI(`chatgpt.com`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
+    openai:
+      entryPoints:
+        - websecure
+      service: openai
+      rule: "HostSNI(`openai.com`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -182,3 +198,11 @@ tcp:
       loadBalancer:
         servers:
           - address: "anilibria.tv:443"
+    chatgpt:
+      loadBalancer:
+        servers:
+          - address: "chatgpt.com:443"
+    openai:
+      loadBalancer:
+        servers:
+          - address: "openai.com:443"
