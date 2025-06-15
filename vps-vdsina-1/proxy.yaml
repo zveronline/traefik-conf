@@ -1,3 +1,36 @@
+http:
+  # Add the router
+  routers:
+    jacred:
+      entryPoints:
+        - web
+      priority: 2000
+      service: jacred
+      rule: "Host(`jacred.xyz`)"
+      middlewares:
+        - gzip@file
+    tmdbcub:
+      entryPoints:
+        - web
+      priority: 2000
+      service: tmdbcub
+      rule: "Host(`tmdb.cub.red`)"
+      middlewares:
+        - gzip@file
+
+  # Add the service
+  services:
+    jacred:
+      loadBalancer:
+        servers:
+          - url: http://jacred.xyz
+        passHostHeader: true
+    tmdbcub:
+      loadBalancer:
+        servers:
+          - url: http://tmdb.cub.red
+        passHostHeader: true
+
 tcp:
   # Add the router
   routers:
