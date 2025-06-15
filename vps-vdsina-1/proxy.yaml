@@ -167,6 +167,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    oaistatic:
+      entryPoints:
+        - websecure
+      service: oaistatic
+      rule: "HostSNI(`cdn.oaistatic.com`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -206,3 +214,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "openai.com:443"
+    oaistatic:
+      loadBalancer:
+        servers:
+          - address: "cdn.oaistatic.com:443"
