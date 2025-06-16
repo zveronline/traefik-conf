@@ -167,6 +167,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    authopenai:
+      entryPoints:
+        - websecure
+      service: authopenai
+      rule: "HostSNI(`auth.openai.com`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
     oaistatic:
       entryPoints:
         - websecure
@@ -222,6 +230,10 @@ tcp:
       loadBalancer:
         servers:
           - address: "openai.com:443"
+    authopenai:
+      loadBalancer:
+        servers:
+          - address: "auth.openai.com:443"
     oaistatic:
       loadBalancer:
         servers:
