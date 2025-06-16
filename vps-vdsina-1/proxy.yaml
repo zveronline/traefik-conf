@@ -191,6 +191,14 @@ tcp:
       # will route TLS requests (and ignore non tls requests)
       tls:
         passthrough: true
+    auxxxilium:
+      entryPoints:
+        - websecure
+      service: auxxxilium
+      rule: "HostSNI(`arc.auxxxilium.tech`)"
+      # will route TLS requests (and ignore non tls requests)
+      tls:
+        passthrough: true
 
   # Add the service
   services:
@@ -242,3 +250,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "4pda.to:443"
+    auxxxilium:
+      loadBalancer:
+        servers:
+          - address: "arc.auxxxilium.tech:443"
