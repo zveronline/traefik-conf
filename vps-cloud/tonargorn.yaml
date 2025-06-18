@@ -16,3 +16,34 @@ http:
           - main: "tonargorn.ru"
             sans:
               - "*.tonargorn.ru"
+
+tcp:
+  # Add the router
+  routers:
+    veloren1:
+      entryPoints:
+        - veloren1
+      service: veloren1
+      rule: "HostSNI(`*`)"
+      # will route TLS requests (and ignore non tls requests)
+      #tls:
+      #  passthrough: true
+    veloren2:
+      entryPoints:
+        - veloren2
+      service: veloren2
+      rule: "HostSNI(`*`)"
+      # will route TLS requests (and ignore non tls requests)
+      #tls:
+      #  passthrough: true
+
+  # Add the service
+  services:
+    veloren1:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.3:14004"
+    veloren2:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.3:14005"
