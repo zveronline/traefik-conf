@@ -2,11 +2,11 @@
 # See https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-dynamic-configuration
 
 http:
-  serversTransports:
-    securetransport:
-      insecureSkipVerify: true
-    insecuretransport:
-      insecureSkipVerify: true
+#  serversTransports:
+#    securetransport:
+#      insecureSkipVerify: true
+#    insecuretransport:
+#      insecureSkipVerify: true
   middlewares:
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
