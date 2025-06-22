@@ -15,12 +15,26 @@ http:
             sans:
               - "*.z-network.ru"
 
+    acmedns-http:
+      entryPoints:
+        - web
+      priority: 2000
+      service: acmedns-http
+      rule: "Host(`acme.z-network.ru`)"
+      middlewares:
+        - gzip@file
+
   # Add the service
   services:
     acmedns:
       loadBalancer:
         servers:
           - url: https://10.3.1.7
+        passHostHeader: true
+    acmedns-http:
+      loadBalancer:
+        servers:
+          - url: http://10.3.1.7
         passHostHeader: true
 tcp:
   # Add the router
