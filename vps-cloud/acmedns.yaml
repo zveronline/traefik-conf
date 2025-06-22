@@ -5,20 +5,6 @@ http:
       entryPoints:
         - websecure
       service: acmedns
-      rule: "Host(`acme.tonargorn.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: acme-dns
-        domains:
-          - main: "tonargorn.ru"
-            sans:
-              - "*.tonargorn.ru"
-
-    acmedns2:
-      entryPoints:
-        - websecure
-      service: acmedns
       rule: "Host(`acme.z-network.ru`)"
       middlewares:
         - gzip@file
