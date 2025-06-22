@@ -5,15 +5,25 @@ http:
       entryPoints:
         - websecure
       service: acmedns
-      rule: "Host(`acme.tonargorn.ru`)"
+      rule: "Host(`auth.acme-dns.ru`)"
       middlewares:
         - gzip@file
       tls:
         certResolver: acme-dns
         domains:
-          - main: "tonargorn.ru"
+          - main: "acme-dns.ru"
             sans:
-              - "*.tonargorn.ru"
+              - "*.acme-dns.ru"
+
+    acmedns-http:
+      entryPoints:
+        - web
+      priority: 2000
+      service: acmedns
+      rule: "Host(`auth.acme-dns.ru`)"
+      middlewares:
+        - gzip@file
+
   # Add the service
   services:
     acmedns:
