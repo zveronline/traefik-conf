@@ -57,54 +57,28 @@ http:
       entryPoints:
         - synology
       service: tkms
-      rule: "Host(`s.k3kw.ru`)"
+      rule: "Host(`tkm.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
         certResolver: acme-dns
         domains:
-          - main: "k3kw.ru"
+          - main: "z-network.ru"
             sans:
-              - "*.k3kw.ru"
+              - "*.z-network.ru"
     tkms-443:
       entryPoints:
         - websecure
       service: tkms-443
-      rule: "Host(`s.k3kw.ru`) || Host(`c.k3kw.ru`) || Host(`ha.k3kw.ru`)"
+      rule: "Host(`tkm.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
         certResolver: acme-dns
         domains:
-          - main: "k3kw.ru"
+          - main: "z-network.ru"
             sans:
-              - "*.k3kw.ru"
-    tkmf:
-      entryPoints:
-        - websecure
-      service: tkmf
-      rule: "Host(`f.k3kw.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: acme-dns
-        domains:
-          - main: "k3kw.ru"
-            sans:
-              - "*.k3kw.ru"
-    tkm-webdav:
-      entryPoints:
-        - websecure
-      service: tkm-webdav
-      rule: "Host(`wd.k3kw.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: acme-dns
-        domains:
-          - main: "k3kw.ru"
-            sans:
-              - "*.k3kw.ru"
+              - "*.z-network.ru"
 
   # Add the service
   services:
@@ -138,16 +112,6 @@ http:
       loadBalancer:
         servers:
           - url: https://10.0.25.3
-        passHostHeader: true
-    tkmf:
-      loadBalancer:
-        servers:
-          - url: https://10.0.25.3:7001
-        passHostHeader: true
-    tkm-webdav:
-      loadBalancer:
-        servers:
-          - url: https://10.0.25.3:5006
         passHostHeader: true
 
 tcp:
