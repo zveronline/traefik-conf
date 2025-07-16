@@ -81,7 +81,7 @@ http:
               - "*.z-network.ru"
     alexs:
       entryPoints:
-        - websecure
+        - synology
       service: alexs
       rule: "Host(`alex.z-network.ru`)"
       middlewares:
