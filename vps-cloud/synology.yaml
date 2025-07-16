@@ -79,6 +79,32 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    alexs:
+      entryPoints:
+        - websecure
+      service: alexs
+      rule: "Host(`alex.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    alexs-443:
+      entryPoints:
+        - websecure
+      service: alexs-443
+      rule: "Host(`alex.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
 
   # Add the service
   services:
@@ -112,6 +138,15 @@ http:
       loadBalancer:
         servers:
           - url: https://10.0.25.3
+        passHostHeader: true
+    alexs:
+      loadBalancer:
+        servers:
+          - url: https://10.242.84.140:5001
+    alexs-443:
+      loadBalancer:
+        servers:
+          - url: https://10.242.84.140
         passHostHeader: true
 
 tcp:
