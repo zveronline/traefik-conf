@@ -152,10 +152,18 @@ http:
 tcp:
   # Add the router
   routers:
-    drive:
+    hyperbackup:
       entryPoints:
-        - drive
-      service: drive
+        - hyperbackup
+      service: hyperbackup
+      rule: "HostSNI(`*`)"
+      # will route TLS requests (and ignore non tls requests)
+      #tls:
+      #  passthrough: true
+    hyperbackup:
+      entryPoints:
+        - hyperbackup
+      service: hyperbackup
       rule: "HostSNI(`*`)"
       # will route TLS requests (and ignore non tls requests)
       #tls:
@@ -167,3 +175,7 @@ tcp:
       loadBalancer:
         servers:
           - address: "10.3.0.100:6690"
+    hyperbackup:
+      loadBalancer:
+        servers:
+          - address: "10.3.0.100:6281"
