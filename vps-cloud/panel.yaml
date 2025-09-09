@@ -1,0 +1,60 @@
+http:
+  # Add the router
+  routers:
+    ptero:
+      entryPoints:
+        - websecure
+      service: ptero
+      rule: "Host(`ptero.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    game:
+      entryPoints:
+        - websecure
+      service: game
+      rule: "Host(`game.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    mcsm-wss:
+      entryPoints:
+        - websecure
+      service: mcsm-wss
+      rule: "Host(`mcsm-wss.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+
+  # Add the service
+  services:
+    ptero:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.12:80/
+        passHostHeader: true
+    game:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.11:80/
+        passHostHeader: true
+    mcsm-wss:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.3:24444/
+        passHostHeader: true
