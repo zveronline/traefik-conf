@@ -14,11 +14,11 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    game:
+    mcsm-sto2:
       entryPoints:
         - websecure
-      service: game
-      rule: "Host(`game.z-network.ru`)"
+      service: mcsm-sto2
+      rule: "Host(`mcsm-sto2.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
@@ -48,10 +48,10 @@ http:
         servers:
         - url: http://10.3.1.12:80/
         passHostHeader: true
-    game:
+    mcsm-sto2:
       loadBalancer:
         servers:
-        - url: http://10.3.1.11:80/
+        - url: http://10.5.0.100:24444/
         passHostHeader: true
     mcsm-wss:
       loadBalancer:
