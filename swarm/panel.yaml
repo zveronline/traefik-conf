@@ -1,11 +1,11 @@
 http:
   # Add the router
   routers:
-    ptero:
+    linstor-gw:
       entryPoints:
         - websecure
-      service: ptero
-      rule: "Host(`ptero.z-network.ru`)"
+      service: linstor-gw
+      rule: "Host(`linstor-gw.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
@@ -30,10 +30,10 @@ http:
 
   # Add the service
   services:
-    ptero:
+    linstor-gw:
       loadBalancer:
         servers:
-        - url: http://10.3.1.12:80/
+        - url: http://10.3.0.4:8080/
         passHostHeader: true
     linstor:
       loadBalancer:
