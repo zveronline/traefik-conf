@@ -14,6 +14,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    pve2:
+      entryPoints:
+        - websecure
+      service: pve2
+      rule: "Host(`pve2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     pbs:
       entryPoints:
         - websecure
@@ -33,6 +46,11 @@ http:
       loadBalancer:
         servers:
         - url: https://10.3.0.10:8006/
+        passHostHeader: false
+    pve2:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.5:8006/
         passHostHeader: false
     pbs:
       loadBalancer:
