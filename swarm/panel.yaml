@@ -27,6 +27,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    openwrt:
+      entryPoints:
+        - websecure
+      service: openwrt
+      rule: "Host(`gw.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
 
   # Add the service
   services:
@@ -39,4 +52,9 @@ http:
       loadBalancer:
         servers:
         - url: http://10.3.0.4:3370/
+        passHostHeader: true
+    openwrt:
+      loadBalancer:
+        servers:
+        - url: http://10.3.0.1:80/
         passHostHeader: true
