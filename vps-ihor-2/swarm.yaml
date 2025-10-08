@@ -34,7 +34,6 @@ http:
         - websecure
       service: swarm
       rule: "Host(`file.zveronline.ru`)"
-      priority: 1
       middlewares:
         - gzip@file
       tls:
