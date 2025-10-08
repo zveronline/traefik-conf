@@ -15,6 +15,19 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
+    wordpress:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
   # Add the service
   services:
     traefik-swarm:
