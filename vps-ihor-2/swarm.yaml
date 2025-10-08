@@ -29,7 +29,20 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
-
+    zveronline1:
+      entryPoints:
+        - websecure
+      service: swarm
+      rule: "Host(`file.zveronline.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
   # Add the service
   services:
     swarm:
