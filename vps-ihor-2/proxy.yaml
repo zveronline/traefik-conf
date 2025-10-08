@@ -55,6 +55,19 @@ http:
           - main: "astro-kirov.ru"
             sans:
               - "*.astro-kirov.ru"
+    tonargorn:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "tonargorn.ru"
+            sans:
+              - "*.tonargorn.ru"
   # Add the service
   services:
     traefik-swarm:
