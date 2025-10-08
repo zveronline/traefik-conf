@@ -1,0 +1,65 @@
+http:
+  # Add the router
+  routers:
+
+    zveronline-http:
+      entryPoints:
+        - web
+      priority: 2000
+      service: traefik-swarm-http
+      rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
+      middlewares:
+        - gzip@file
+    znetwork:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    zveronline:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    wordpress:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+  # Add the service
+  services:
+    traefik-swarm:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.3:443
+        passHostHeader: true
+    traefik-swarm-http:
+      loadBalancer:
+        servers:
+          - url: http://10.3.0.3:80
+        passHostHeader: true
