@@ -1,12 +1,26 @@
 http:
   # Add the router
   routers:
-
-    zveronline1:
+    znetwork:
       entryPoints:
         - websecure
       service: traefik-swarm
-      rule: "Host(`file.zveronline.ru`)"
+      rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    zveronline:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
+      priority: 1
       middlewares:
         - gzip@file
       tls:
