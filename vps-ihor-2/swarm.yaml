@@ -1,0 +1,39 @@
+http:
+  # Add the router
+  routers:
+    znetwork:
+      entryPoints:
+        - websecure
+      service: swarm
+      rule: "HostRegexp(`^.+\.z-network\.ru$`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    zveronline:
+      entryPoints:
+        - websecure
+      service: swarm
+      rule: "HostRegexp(`^.+\.zveronline\.ru$`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+
+  # Add the service
+  services:
+    swarm:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.3:443/
+        passHostHeader: true
