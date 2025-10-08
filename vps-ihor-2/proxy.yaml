@@ -42,6 +42,19 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
+    wordpress-astro:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`astro-kirov.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "astro-kirov.ru"
+            sans:
+              - "*.astro-kirov.ru"
   # Add the service
   services:
     traefik-swarm:
