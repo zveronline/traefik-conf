@@ -17,7 +17,7 @@ http:
               - "*.zveronline.ru"
   # Add the service
   services:
-    swarm:
+    traefik-swarm:
       loadBalancer:
         servers:
         - url: https://10.3.0.3:443
