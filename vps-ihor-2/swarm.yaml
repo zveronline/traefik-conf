@@ -5,7 +5,7 @@ http:
     zveronline1:
       entryPoints:
         - websecure
-      service: swarm
+      service: traefik-swarm
       rule: "Host(`file.zveronline.ru`)"
       middlewares:
         - gzip@file
