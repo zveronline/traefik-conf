@@ -20,5 +20,5 @@ http:
     openwrt:
       loadBalancer:
         servers:
-        - url: https://10.22.200.1:9091/
+        - url: http://10.22.200.1:9090/
         passHostHeader: true
