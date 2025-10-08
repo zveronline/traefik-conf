@@ -20,5 +20,5 @@ http:
     ha2:
       loadBalancer:
         servers:
-          - url: http://10.5.0.11:8123
+          - url: http://10.5.1.1:8123
         passHostHeader: true
