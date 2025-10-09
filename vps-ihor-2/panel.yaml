@@ -14,19 +14,6 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    adguard:
-      entryPoints:
-        - websecure
-      service: adguard
-      rule: "Host(`ag2.zveronline.ru`) || Host(`dns.zveronline.ru`) || Host(`dns3.zveronline.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: acme-dns
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
 
   # Add the service
   services:
@@ -34,9 +21,4 @@ http:
       loadBalancer:
         servers:
         - url: http://10.22.0.1:9090
-        passHostHeader: true
-    adguard:
-      loadBalancer:
-        servers:
-        - url: https://10.22.0.1:8443
         passHostHeader: true
