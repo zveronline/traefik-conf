@@ -27,6 +27,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    mailserver:
+      entryPoints:
+        - websecure
+      service: mailserver
+      rule: "Host(`mail.zveronline.ru`) || Host(`imap.zveronline.ru`) || Host(`smtp.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
 
   # Add the service
   services:
@@ -39,4 +52,9 @@ http:
       loadBalancer:
         servers:
         - url: http://10.5.1.1:8123
+        passHostHeader: true
+    mailserver:
+      loadBalancer:
+        servers:
+        - url: https://10.0.23.37:443
         passHostHeader: true
