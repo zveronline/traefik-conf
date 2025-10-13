@@ -27,6 +27,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    gw2:
+      entryPoints:
+        - websecure
+      service: gw2
+      rule: "Host(`gw2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     mailserver:
       entryPoints:
         - websecure
@@ -52,6 +65,11 @@ http:
       loadBalancer:
         servers:
         - url: http://10.5.1.1:8123
+        passHostHeader: true
+    gw2:
+      loadBalancer:
+        servers:
+        - url: http://10.5.0.1:80
         passHostHeader: true
     mailserver:
       loadBalancer:
