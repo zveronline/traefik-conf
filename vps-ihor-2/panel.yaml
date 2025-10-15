@@ -14,6 +14,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    cudywrt:
+      entryPoints:
+        - websecure
+      service: cudywrt
+      rule: "Host(`cudywrt.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     ha2:
       entryPoints:
         - websecure
@@ -70,6 +83,11 @@ http:
       loadBalancer:
         servers:
         - url: http://10.5.0.1:80
+        passHostHeader: true
+    cudywrt:
+      loadBalancer:
+        servers:
+        - url: http://10.243.191.88:80
         passHostHeader: true
     mailserver:
       loadBalancer:
