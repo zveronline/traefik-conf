@@ -1,0 +1,91 @@
+http:
+  # Add the router
+  routers:
+    znetwork:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    zveronline:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    wordpress:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    wordpress-astro:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`astro-kirov.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "astro-kirov.ru"
+            sans:
+              - "*.astro-kirov.ru"
+    tonargorn:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "tonargorn.ru"
+            sans:
+              - "*.tonargorn.ru"
+    lampac-http:
+      entryPoints:
+        - web
+      service: traefik-swarm-http
+      rule: "Host(`lampac.zveronline.ru`)"
+      priority: 2000
+      middlewares:
+        - gzip@file
+
+  # Add the service
+  services:
+    traefik-swarm:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.3:443
+        passHostHeader: true
+    traefik-swarm-http:
+      loadBalancer:
+        servers:
+        - url: http://10.3.0.3:80
+        passHostHeader: true

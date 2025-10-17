@@ -1,0 +1,97 @@
+http:
+  # Add the router
+  routers:
+    openwrt:
+      entryPoints:
+        - websecure
+      service: openwrt
+      rule: "Host(`vps-vdsina-2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    cudywrt:
+      entryPoints:
+        - websecure
+      service: cudywrt
+      rule: "Host(`cudywrt.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    ha2:
+      entryPoints:
+        - websecure
+      service: ha2
+      rule: "Host(`ha2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    gw2:
+      entryPoints:
+        - websecure
+      service: gw2
+      rule: "Host(`gw2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    mailserver:
+      entryPoints:
+        - websecure
+      service: mailserver
+      rule: "Host(`mail.zveronline.ru`) || Host(`imap.zveronline.ru`) || Host(`smtp.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+
+  # Add the service
+  services:
+    openwrt:
+      loadBalancer:
+        servers:
+        - url: http://10.22.0.1:9090
+        passHostHeader: true
+    ha2:
+      loadBalancer:
+        servers:
+        - url: http://10.5.1.1:8123
+        passHostHeader: true
+    gw2:
+      loadBalancer:
+        servers:
+        - url: http://10.5.0.1:80
+        passHostHeader: true
+    cudywrt:
+      loadBalancer:
+        servers:
+        - url: http://10.0.23.6:80
+        - url: http://10.242.191.88:80
+        passHostHeader: true
+    mailserver:
+      loadBalancer:
+        servers:
+        - url: https://10.0.23.37:443
+        passHostHeader: true
