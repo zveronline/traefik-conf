@@ -93,5 +93,5 @@ http:
     mailserver:
       loadBalancer:
         servers:
-        - url: https://10.0.23.37:443
+        - url: https://10.0.24.37:443
         passHostHeader: true
