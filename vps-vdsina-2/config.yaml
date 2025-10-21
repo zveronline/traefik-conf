@@ -15,6 +15,7 @@ http:
               countries:
                   - RU
                   - BY
+                  - FI
               forceMonthlyUpdate: "true"
               logAllowedRequests: "false"
               logApiRequests: "true"
