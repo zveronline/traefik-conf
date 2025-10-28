@@ -3,9 +3,100 @@ http:
   routers:
     sto:
       entryPoints:
-        - websecure
+        - synology
       service: sto
       rule: "Host(`sto.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    sto-443:
+      entryPoints:
+        - websecure
+      service: sto-443
+      rule: "Host(`sto.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    sto2:
+      entryPoints:
+        - synology
+      service: sto2
+      rule: "Host(`sto2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    sto2-443:
+      entryPoints:
+        - websecure
+      service: sto2-443
+      rule: "Host(`sto2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    tkms:
+      entryPoints:
+        - synology
+      service: tkms
+      rule: "Host(`tkm.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    tkms-443:
+      entryPoints:
+        - websecure
+      service: tkms-443
+      rule: "Host(`tkm.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    alexs:
+      entryPoints:
+        - synology
+      service: alexs
+      rule: "Host(`alex.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    alexs-443:
+      entryPoints:
+        - websecure
+      service: alexs-443
+      rule: "Host(`alex.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
@@ -27,12 +118,48 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+
   # Add the service
   services:
     sto:
       loadBalancer:
         servers:
-        - url: https://10.3.0.100/
+          - url: https://10.3.0.100:5001
+        passHostHeader: true
+    sto-443:
+      loadBalancer:
+        servers:
+          - url: https://10.3.0.100
+        passHostHeader: true
+    sto2:
+      loadBalancer:
+        servers:
+          - url: https://10.5.0.100:5001
+        passHostHeader: true
+    sto2-443:
+      loadBalancer:
+        servers:
+          - url: https://10.5.0.100
+        passHostHeader: true
+    tkms:
+      loadBalancer:
+        servers:
+          - url: https://10.0.25.3:5001
+          #- url: https://10.242.228.155:5001
+        passHostHeader: true
+    tkms-443:
+      loadBalancer:
+        servers:
+          - url: https://10.0.25.3
+        passHostHeader: true
+    alexs:
+      loadBalancer:
+        servers:
+          - url: https://10.242.84.140:5001
+    alexs-443:
+      loadBalancer:
+        servers:
+          - url: https://10.242.84.140
         passHostHeader: true
     sto3:
       loadBalancer:

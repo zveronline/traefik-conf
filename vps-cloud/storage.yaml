@@ -105,6 +105,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    sto3:
+      entryPoints:
+        - websecure
+      service: sto3
+      rule: "Host(`sto3.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
 
   # Add the service
   services:
@@ -148,18 +161,15 @@ http:
         servers:
           - url: https://10.242.84.140
         passHostHeader: true
+    sto3:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.102/
+        passHostHeader: true
 
 tcp:
   # Add the router
   routers:
-    hyperbackup:
-      entryPoints:
-        - hyperbackup
-      service: hyperbackup
-      rule: "HostSNI(`*`)"
-      # will route TLS requests (and ignore non tls requests)
-      #tls:
-      #  passthrough: true
     drive:
       entryPoints:
         - drive
@@ -175,7 +185,3 @@ tcp:
       loadBalancer:
         servers:
           - address: "10.3.0.100:6690"
-    hyperbackup:
-      loadBalancer:
-        servers:
-          - address: "10.3.0.100:6281"
