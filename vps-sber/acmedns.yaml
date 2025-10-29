@@ -1,0 +1,33 @@
+http:
+  # Add the router
+  routers:
+    acmedns:
+      entryPoints:
+        - websecure
+      service: acmedns
+      rule: "Host(`auth.acme-dns.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "acme-dns.ru"
+            sans:
+              - "*.acme-dns.ru"
+
+    acmedns-http:
+      entryPoints:
+        - web
+      priority: 2000
+      service: acmedns
+      rule: "Host(`auth.acme-dns.ru`)"
+      middlewares:
+        - gzip@file
+
+  # Add the service
+  services:
+    acmedns:
+      loadBalancer:
+        servers:
+          - url: http://10.3.1.7
+        passHostHeader: true

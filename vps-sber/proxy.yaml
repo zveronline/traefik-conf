@@ -1,0 +1,115 @@
+http:
+  # Add the router
+  routers:
+    znetwork:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    zveronline:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    wordpress:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    wordpress-astro:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`astro-kirov.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "astro-kirov.ru"
+            sans:
+              - "*.astro-kirov.ru"
+    tonargorn:
+      entryPoints:
+        - websecure
+      service: traefik-swarm
+      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "tonargorn.ru"
+            sans:
+              - "*.tonargorn.ru"
+    lampac-http:
+      entryPoints:
+        - web
+      service: traefik-swarm-http
+      rule: "Host(`lampac.zveronline.ru`)"
+      priority: 2000
+      middlewares:
+        - gzip@file
+    ordinary:
+      entryPoints:
+        - websecure
+#      priority: 20
+      service: traefik-swarm
+      rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`old.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
+      middlewares:
+        - gzip@file
+        - my-geoblock@file
+#        - error-pages@file
+      tls:
+        certResolver: acme-dns
+        domains:
+          - main: "ordinary-minecraft.ru"
+            sans:
+              - "*.ordinary-minecraft.ru"
+    ordinary-http:
+      entryPoints:
+        - web
+      service: traefik-swarm-http
+      rule: "Host(`sessionserver.ordinary-minecraft.ru`)"
+      priority: 2000
+      middlewares:
+        - gzip@file
+
+  # Add the service
+  services:
+    traefik-swarm:
+      loadBalancer:
+        servers:
+        - url: https://10.3.0.3:443
+        passHostHeader: true
+    traefik-swarm-http:
+      loadBalancer:
+        servers:
+        - url: http://10.3.0.3:80
+        passHostHeader: true

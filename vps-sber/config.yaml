@@ -2,11 +2,6 @@
 # See https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-dynamic-configuration
 
 http:
-#  serversTransports:
-#    securetransport:
-#      insecureSkipVerify: true
-#    insecuretransport:
-#      insecureSkipVerify: true
   middlewares:
     my-geoblock:
       plugin:
@@ -20,6 +15,7 @@ http:
               countries:
                   - RU
                   - BY
+                  - FI
               forceMonthlyUpdate: "true"
               logAllowedRequests: "false"
               logApiRequests: "true"

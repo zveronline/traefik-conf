@@ -166,22 +166,3 @@ http:
         servers:
         - url: https://10.3.0.102/
         passHostHeader: true
-
-tcp:
-  # Add the router
-  routers:
-    drive:
-      entryPoints:
-        - drive
-      service: drive
-      rule: "HostSNI(`*`)"
-      # will route TLS requests (and ignore non tls requests)
-      #tls:
-      #  passthrough: true
-
-  # Add the service
-  services:
-    drive:
-      loadBalancer:
-        servers:
-          - address: "10.3.0.100:6690"
