@@ -5,7 +5,7 @@ http:
       entryPoints:
         - websecure
       service: openwrt
-      rule: "Host(`vps-vdsina-2.z-network.ru`)"
+      rule: "Host(`vps-sber.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
