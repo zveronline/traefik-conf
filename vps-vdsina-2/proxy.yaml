@@ -10,7 +10,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
@@ -24,7 +24,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "zveronline.ru"
             sans:
@@ -37,7 +37,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "zveronline.ru"
             sans:
@@ -50,7 +50,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "astro-kirov.ru"
             sans:
@@ -63,7 +63,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "tonargorn.ru"
             sans:
@@ -87,7 +87,7 @@ http:
         - my-geoblock@file
 #        - error-pages@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "ordinary-minecraft.ru"
             sans:
