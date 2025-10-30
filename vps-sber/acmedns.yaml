@@ -19,7 +19,7 @@ http:
       entryPoints:
         - web
       priority: 2000
-      service: acmedns-http
+      service: acmedns
       rule: "Host(`auth.acme-dns.ru`)"
       middlewares:
         - gzip@file
