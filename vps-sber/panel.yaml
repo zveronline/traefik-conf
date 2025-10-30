@@ -9,7 +9,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
@@ -22,7 +22,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
@@ -35,7 +35,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
@@ -48,7 +48,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
@@ -61,7 +61,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "zveronline.ru"
             sans:
@@ -74,7 +74,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
@@ -87,7 +87,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "zveronline.ru"
             sans:
