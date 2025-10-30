@@ -19,15 +19,20 @@ http:
       entryPoints:
         - web
       priority: 2000
-      service: acmedns
+      service: acmedns-http
       rule: "Host(`auth.acme-dns.ru`)"
       middlewares:
         - gzip@file
 
   # Add the service
   services:
+    acmedns-http:
+      loadBalancer:
+        servers:
+          - url: http://10.3.1.7:80
+        passHostHeader: true
     acmedns:
       loadBalancer:
         servers:
-          - url: http://10.3.1.7
+          - url: https://10.3.1.7:443
         passHostHeader: true
