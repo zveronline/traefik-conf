@@ -114,6 +114,7 @@ http:
     cudywrt:
       loadBalancer:
         servers:
+        - url: http://10.3.2.85:9090
 #        - url: http://10.0.23.6:80
         - url: http://10.242.191.88:80
         passHostHeader: true
