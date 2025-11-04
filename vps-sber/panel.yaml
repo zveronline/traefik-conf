@@ -53,19 +53,6 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    mailserver:
-      entryPoints:
-        - websecure
-      service: mailserver
-      rule: "Host(`mail.zveronline.ru`) || Host(`imap.zveronline.ru`) || Host(`smtp.zveronline.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
     mcsm-sto2:
       entryPoints:
         - websecure
@@ -116,11 +103,6 @@ http:
         servers:
 #        - url: http://10.0.23.6:80
         - url: http://10.242.191.88:80
-        passHostHeader: true
-    mailserver:
-      loadBalancer:
-        servers:
-        - url: https://10.0.24.37:443
         passHostHeader: true
     mcsm-sto2:
       loadBalancer:
