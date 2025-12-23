@@ -145,7 +145,6 @@ http:
       loadBalancer:
         servers:
           - url: https://10.0.25.3:5001
-          #- url: https://10.242.228.155:5001
         passHostHeader: true
     tkms-443:
       loadBalancer:
