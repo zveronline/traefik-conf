@@ -1,0 +1,23 @@
+http:
+  # Add the router
+  routers:
+    file2:
+      entryPoints:
+        - websecure
+      service: file2
+      rule: "Host(`file2.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+
+  # Add the service
+  services:
+    file2:
+      loadBalancer:
+        servers:
+        - url: https://file.egos-vl.ru
