@@ -20,5 +20,5 @@ http:
     file2:
       loadBalancer:
         servers:
-        - url: https://file.egos-vl.ru
+        - url: http://file.egos-vl.ru:8083
         passHostHeader: true
