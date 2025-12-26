@@ -95,7 +95,7 @@ http:
     gw2:
       loadBalancer:
         servers:
-        - url: http://10.5.0.1:80
+        - url: http://10.242.255.245:80
         passHostHeader: true
     cudywrt:
       loadBalancer:
