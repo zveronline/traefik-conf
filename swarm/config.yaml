@@ -61,7 +61,7 @@ http:
       middlewares:
         - exceptions@swarm
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "z-network.ru"
             sans:
