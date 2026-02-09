@@ -1,42 +1,6 @@
 http:
   # Add the router
   routers:
-    znetwork-sto2:
-      entryPoints:
-        - websecure
-      service: traefik-sto2
-      rule: "Host(`traefik-sto2.z-network.ru`)"
-      priority: 1
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
-    zveronline-sto2:
-      entryPoints:
-        - websecure
-      service: traefik-sto2
-      rule: "Host(`lampa2.zveronline.ru`)"
-      priority: 1
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
-    lampa2-http:
-      entryPoints:
-        - web
-      service: traefik-sto2-http
-      rule: "Host(`lampa2.zveronline.ru`)"
-      priority: 2000
-      middlewares:
-        - gzip@file
     znetwork:
       entryPoints:
         - websecure
@@ -104,10 +68,24 @@ http:
           - main: "tonargorn.ru"
             sans:
               - "*.tonargorn.ru"
+    zveronline-lxc:
+      entryPoints:
+        - websecure
+      service: traefik-lxc
+      rule: "Host(`lampac.zveronline.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
     lampac-http:
       entryPoints:
         - web
-      service: traefik-swarm-http
+      service: traefik-lxc-http
       rule: "Host(`lampac.zveronline.ru`)"
       priority: 2000
       middlewares:
@@ -144,18 +122,18 @@ http:
         servers:
         - url: https://10.3.0.3:443
         passHostHeader: true
+    traefik-lxc:
+      loadBalancer:
+        servers:
+        - url: https://10.3.1.11:443
+        passHostHeader: true
     traefik-swarm-http:
       loadBalancer:
         servers:
         - url: http://10.3.0.3:80
         passHostHeader: true
-    traefik-sto2:
+    traefik-lxc-http:
       loadBalancer:
         servers:
-        - url: https://10.5.1.4:443
-        passHostHeader: true
-    traefik-sto2-http:
-      loadBalancer:
-        servers:
-        - url: http://10.5.1.4:80
+        - url: http://10.3.1.11:80
         passHostHeader: true
