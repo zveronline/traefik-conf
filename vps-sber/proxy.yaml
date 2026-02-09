@@ -73,7 +73,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-lxc
-      rule: "Host(`traefik-lxc.z-network.ru`)"
+      rule: "Host(`traefik-lxc.z-network.ru`) || Host(`webtop.z-network.ru`)"
       priority: 1
       middlewares:
         - gzip@file
