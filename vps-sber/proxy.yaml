@@ -29,19 +29,6 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
-    wordpress:
-      entryPoints:
-        - websecure
-      service: traefik-swarm
-      rule: "Host(`zveronline.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
     wordpress-astro:
       entryPoints:
         - websecure
@@ -82,7 +69,21 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
-    lampac-http:
+    znetwork-lxc:
+      entryPoints:
+        - websecure
+      service: traefik-lxc
+      rule: "Host(`traefik-lxc.z-network.ru`)"
+      priority: 1
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
+    lxc-http:
       entryPoints:
         - web
       service: traefik-lxc-http
