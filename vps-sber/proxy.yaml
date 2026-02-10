@@ -59,7 +59,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-lxc
-      rule: "Host(`lampac.zveronline.ru`) || Host(`ytdl.zveronline.ru`)"
+      rule: "Host(`lampac.zveronline.ru`) || Host(`ytdl.zveronline.ru`) || Host(`prowlarr.zveronline.ru`)"
       priority: 1
       middlewares:
         - gzip@file
