@@ -60,7 +60,6 @@ http:
         - websecure
       service: traefik-lxc
       rule: "Host(`lampac.zveronline.ru`) || Host(`ytdl.zveronline.ru`) || Host(`prowlarr.zveronline.ru`) || Host(`file.zveronline.ru`)"
-      priority: 1
       middlewares:
         - gzip@file
       tls:
@@ -74,7 +73,6 @@ http:
         - websecure
       service: traefik-lxc
       rule: "Host(`traefik-lxc.z-network.ru`) || Host(`webtop.z-network.ru`) || Host(`sync.z-network.ru`) || Host(`torrent.z-network.ru`)"
-      priority: 1
       middlewares:
         - gzip@file
       tls:
@@ -94,7 +92,6 @@ http:
     ordinary:
       entryPoints:
         - websecure
-#      priority: 20
       service: traefik-swarm
       rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`old.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
       middlewares:
