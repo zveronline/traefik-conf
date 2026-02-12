@@ -59,7 +59,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-lxc
-      rule: "Host(`lampac.zveronline.ru`) || Host(`ytdl.zveronline.ru`) || Host(`prowlarr.zveronline.ru`) || Host(`file.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`nextcloud.zveronline.ru`) || Host(`onlyoffice.zveronline.ru`) || Host(`ai.zveronline.ru`) || Host(`peertube.zveronline.ru`)"
+      rule: "Host(`lampac.zveronline.ru`) || Host(`ytdl.zveronline.ru`) || Host(`prowlarr.zveronline.ru`) || Host(`file.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`nextcloud.zveronline.ru`) || Host(`onlyoffice.zveronline.ru`) || Host(`ai.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`tube.zveronline.ru`)"
       middlewares:
         - gzip@file
       tls:
