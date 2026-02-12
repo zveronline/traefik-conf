@@ -27,19 +27,6 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    pbs:
-      entryPoints:
-        - websecure
-      service: pbs
-      rule: "Host(`pbs.z-network.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
   # Add the service
   services:
     pve1:
@@ -51,9 +38,4 @@ http:
       loadBalancer:
         servers:
         - url: https://10.3.0.5:8006/
-        passHostHeader: false
-    pbs:
-      loadBalancer:
-        servers:
-        - url: https://10.3.1.10:8007
         passHostHeader: false
