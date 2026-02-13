@@ -45,7 +45,7 @@ http:
     tonargorn:
       entryPoints:
         - websecure
-      service: traefik-swarm
+      service: traefik-lxc
       rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
       middlewares:
         - gzip@file
