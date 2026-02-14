@@ -1,10 +1,10 @@
 http:
   # Add the router
   routers:
-    znetwork:
+    znetwork-lxc:
       entryPoints:
         - websecure
-      service: traefik-swarm
+      service: traefik-lxc
       rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
       priority: 1
       middlewares:
@@ -15,10 +15,10 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    zveronline:
+    zveronline-lxc:
       entryPoints:
         - websecure
-      service: traefik-swarm
+      service: traefik-lxc
       rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
       priority: 1
       middlewares:
@@ -32,7 +32,7 @@ http:
     wordpress-astro:
       entryPoints:
         - websecure
-      service: traefik-swarm
+      service: traefik-lxc
       rule: "Host(`astro-kirov.ru`)"
       middlewares:
         - gzip@file
@@ -55,32 +55,6 @@ http:
           - main: "tonargorn.ru"
             sans:
               - "*.tonargorn.ru"
-    zveronline-lxc:
-      entryPoints:
-        - websecure
-      service: traefik-lxc
-      rule: "Host(`lampac.zveronline.ru`) || Host(`ytdl.zveronline.ru`) || Host(`prowlarr.zveronline.ru`) || Host(`file.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`nextcloud.zveronline.ru`) || Host(`onlyoffice.zveronline.ru`) || Host(`ai.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`book.zveronline.ru`) || Host(`mcsm.zveronline.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
-    znetwork-lxc:
-      entryPoints:
-        - websecure
-      service: traefik-lxc
-      rule: "Host(`traefik-lxc.z-network.ru`) || Host(`webtop.z-network.ru`) || Host(`sync.z-network.ru`) || Host(`torrent.z-network.ru`) || Host(`guacamole.z-network.ru`) || Host(`vscode.z-network.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
     lxc-http:
       entryPoints:
         - web
@@ -92,7 +66,7 @@ http:
     ordinary:
       entryPoints:
         - websecure
-      service: traefik-swarm
+      service: traefik-lxc
       rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`old.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
       middlewares:
         - gzip@file
@@ -107,7 +81,7 @@ http:
     ordinary-http:
       entryPoints:
         - web
-      service: traefik-swarm-http
+      service: traefik-lxc-http
       rule: "Host(`sessionserver.ordinary-minecraft.ru`)"
       priority: 2000
       middlewares:
@@ -115,20 +89,10 @@ http:
 
   # Add the service
   services:
-    traefik-swarm:
-      loadBalancer:
-        servers:
-        - url: https://10.3.0.3:443
-        passHostHeader: true
     traefik-lxc:
       loadBalancer:
         servers:
         - url: https://10.3.1.11:443
-        passHostHeader: true
-    traefik-swarm-http:
-      loadBalancer:
-        servers:
-        - url: http://10.3.0.3:80
         passHostHeader: true
     traefik-lxc-http:
       loadBalancer:
