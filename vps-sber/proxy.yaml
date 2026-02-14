@@ -72,7 +72,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-lxc
-      rule: "Host(`traefik-lxc.z-network.ru`) || Host(`webtop.z-network.ru`) || Host(`sync.z-network.ru`) || Host(`torrent.z-network.ru`) || Host(`guacamole.z-network.ru`)"
+      rule: "Host(`traefik-lxc.z-network.ru`) || Host(`webtop.z-network.ru`) || Host(`sync.z-network.ru`) || Host(`torrent.z-network.ru`) || Host(`guacamole.z-network.ru`) || Host(`vscode.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
