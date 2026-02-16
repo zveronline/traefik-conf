@@ -29,6 +29,19 @@ http:
           - main: "zveronline.ru"
             sans:
               - "*.zveronline.ru"
+    wordpress:
+      entryPoints:
+        - websecure
+      service: traefik-lxc
+      rule: "Host(`zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
     wordpress-astro:
       entryPoints:
         - websecure
