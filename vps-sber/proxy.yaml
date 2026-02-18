@@ -68,6 +68,19 @@ http:
           - main: "tonargorn.ru"
             sans:
               - "*.tonargorn.ru"
+    znetwork-kuber:
+      entryPoints:
+        - websecure
+      service: traefik-kuber
+      rule: "Host(`traefik.z-network.ru`) || Host(`rancher.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     lxc-http:
       entryPoints:
         - web
@@ -111,4 +124,9 @@ http:
       loadBalancer:
         servers:
         - url: http://10.3.1.11:80
+        passHostHeader: true
+    traefik-kuber:
+      loadBalancer:
+        servers:
+        - url: https://10.3.3.3:443
         passHostHeader: true
