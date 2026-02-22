@@ -9,7 +9,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: acme-dns
+        certResolver: cloudflare
         domains:
           - main: "acme-dns.ru"
             sans:
