@@ -18,7 +18,7 @@ http:
                   - FI
               forceMonthlyUpdate: "true"
               logAllowedRequests: "false"
-              logApiRequests: "true"
+              logApiRequests: "false"
               logLocalRequests: "false"
               unknownCountryApiResponse: nil
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
