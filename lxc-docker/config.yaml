@@ -3,6 +3,17 @@
 
 http:
   middlewares:
+    traefik-real-ip:
+      plugin:
+        traefik-real-ip:
+          thrustLocal: true
+          thrustCloudFlare: true
+          thrustEdgeOne: false
+          logLevel: info
+          denyUntrusted: false
+          trustedIPs:
+            - "10.0.0.0/8"
+            - "176.108.248.229/32"
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
@@ -19,6 +30,7 @@ http:
           - default-security-headers
           - error-pages
           - gzip
+          - traefik-real-ip
 
     # Add automatically some security headers
     # Use with traefik.http.routers.myRouter.middlewares: "default-security-headers@file"
