@@ -7,7 +7,7 @@ http:
       service: file2
       rule: "Host(`file2.zveronline.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:

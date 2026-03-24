@@ -7,7 +7,7 @@ http:
       service: openwrt
       rule: "Host(`vps-sber.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -20,7 +20,7 @@ http:
       service: cudywrt
       rule: "Host(`cudywrt.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -33,7 +33,7 @@ http:
       service: ha2
       rule: "Host(`ha2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -46,7 +46,7 @@ http:
       service: gw2
       rule: "Host(`gw2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -59,7 +59,7 @@ http:
       service: mcsm-sto2
       rule: "Host(`mcsm-sto2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -72,7 +72,7 @@ http:
       service: mcsm-wss
       rule: "Host(`mcsm-wss.zveronline.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:

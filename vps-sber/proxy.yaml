@@ -8,7 +8,7 @@ http:
       rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
       priority: 1
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -22,7 +22,7 @@ http:
       rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
       priority: 1
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -35,7 +35,7 @@ http:
       service: traefik-lxc
       rule: "Host(`zveronline.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -48,7 +48,7 @@ http:
       service: traefik-lxc
       rule: "Host(`astro-kirov.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -61,7 +61,7 @@ http:
       service: traefik-lxc
       rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -74,7 +74,7 @@ http:
       service: traefik-kuber
       rule: "Host(`traefik.z-network.ru`) || Host(`rancher.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
         certResolver: cloudflare
         domains:
@@ -89,6 +89,7 @@ http:
       priority: 2000
       middlewares:
         - gzip@file
+        - my-geoblock@file
     ordinary:
       entryPoints:
         - websecure
@@ -112,6 +113,7 @@ http:
       priority: 2000
       middlewares:
         - gzip@file
+        - my-geoblock@file
 
   # Add the service
   services:
