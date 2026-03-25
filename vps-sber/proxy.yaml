@@ -121,8 +121,8 @@ http:
     traefik-lxc:
       loadBalancer:
         servers:
-#        - url: https://10.3.1.11:443
-          - url: https://85.93.42.67:443
+        - url: https://10.3.1.11:443
+#          - url: https://85.93.42.67:443
         passHostHeader: true
     traefik-lxc-http:
       loadBalancer:
