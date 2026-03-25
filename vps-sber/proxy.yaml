@@ -16,12 +16,39 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    znetwork-4:
+      entryPoints:
+        - websecure
+      service: traefik-4
+      rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`)"
+      middlewares:
+        - gzip@file
+        - my-geoblock@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     zveronline-lxc:
       entryPoints:
         - websecure
       service: traefik-lxc
       rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
       priority: 1
+      middlewares:
+        - default@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "zveronline.ru"
+            sans:
+              - "*.zveronline.ru"
+    zveronline-4:
+      entryPoints:
+        - websecure
+      service: traefik-4
+      rule: "Host(`file.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`book.zveronline.ru`)"
       middlewares:
         - default@file
       tls:
@@ -86,7 +113,7 @@ http:
       entryPoints:
         - web
       service: traefik-lxc-http
-      rule: "Host(`lampac.zveronline.ru`) || Host(`lampa.zveronline.ru`) || Host(`file.zveronline.ru`)"
+      rule: "Host(`lampac.zveronline.ru`) || Host(`lampa.zveronline.ru`)"
       priority: 2000
       middlewares:
         - gzip@file
@@ -94,7 +121,7 @@ http:
     ordinary:
       entryPoints:
         - websecure
-      service: traefik-lxc
+      service: traefik-4
       rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`old.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
       middlewares:
         - gzip@file
@@ -109,7 +136,7 @@ http:
     ordinary-http:
       entryPoints:
         - web
-      service: traefik-lxc-http
+      service: traefik-4-http
       rule: "Host(`sessionserver.ordinary-minecraft.ru`)"
       priority: 2000
       middlewares:
@@ -133,4 +160,14 @@ http:
       loadBalancer:
         servers:
         - url: https://10.3.3.3:443
+        passHostHeader: true
+    traefik-4:
+      loadBalancer:
+        servers:
+        - url: https://10.3.1.3:443
+        passHostHeader: true
+    traefik-4-http:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.3:80
         passHostHeader: true
