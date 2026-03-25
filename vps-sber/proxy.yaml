@@ -8,7 +8,8 @@ http:
       rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
       priority: 1
       middlewares:
-        - default@file
+        - gzip@file
+        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
