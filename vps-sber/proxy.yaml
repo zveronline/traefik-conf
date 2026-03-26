@@ -1,10 +1,10 @@
 http:
   # Add the router
   routers:
-    znetwork-lxc:
+    znetwork:
       entryPoints:
         - websecure
-      service: traefik-lxc
+      service: traefik-1
       rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
       priority: 1
       middlewares:
@@ -30,10 +30,10 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    zveronline-lxc:
+    zveronline:
       entryPoints:
         - websecure
-      service: traefik-lxc
+      service: traefik-1
       rule: "HostRegexp(`[a-z]+\\.zveronline\\.ru`)"
       priority: 1
       middlewares:
@@ -60,7 +60,7 @@ http:
     wordpress:
       entryPoints:
         - websecure
-      service: traefik-lxc
+      service: traefik-1
       rule: "Host(`zveronline.ru`)"
       middlewares:
         - default@file
@@ -73,7 +73,7 @@ http:
     wordpress-astro:
       entryPoints:
         - websecure
-      service: traefik-lxc
+      service: traefik-1
       rule: "Host(`astro-kirov.ru`)"
       middlewares:
         - default@file
@@ -86,7 +86,7 @@ http:
     tonargorn:
       entryPoints:
         - websecure
-      service: traefik-lxc
+      service: traefik-1
       rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
       middlewares:
         - default@file
@@ -109,10 +109,10 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
-    lxc-http:
+    vm-docker-1-http:
       entryPoints:
         - web
-      service: traefik-lxc-http
+      service: traefik-1-http
       rule: "Host(`lampac.zveronline.ru`) || Host(`lampa.zveronline.ru`)"
       priority: 2000
       middlewares:
@@ -145,16 +145,16 @@ http:
 
   # Add the service
   services:
-    traefik-lxc:
+    traefik-1:
       loadBalancer:
         servers:
-        - url: https://10.3.1.11:443
+        - url: https://10.3.1.12:443
 #          - url: https://85.93.42.67:443
         passHostHeader: true
-    traefik-lxc-http:
+    traefik-1-http:
       loadBalancer:
         servers:
-        - url: http://10.3.1.11:80
+        - url: http://10.3.1.12:80
         passHostHeader: true
     traefik-kuber:
       loadBalancer:
