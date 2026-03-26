@@ -2,3 +2,7 @@ tls:
   certificates:
     - certFile: /acme.sh/z-network.ru_ecc/fullchain.cer
       keyFile: /acme.sh/z-network.ru_ecc/z-network.ru.key
+    - certFile: /acme.sh/zveronline.ru_ecc/fullchain.cer
+      keyFile: /acme.sh/zveronline.ru_ecc/zveronline.ru.key
+    - certFile: /acme.sh/ordinary-minecraft.ru_ecc/fullchain.cer
+      keyFile: /acme.sh/ordinary-minecraft.ru_ecc/ordinary-minecraft.ru.key
