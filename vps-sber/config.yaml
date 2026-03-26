@@ -3,20 +3,6 @@
 
 http:
   middlewares:
-    my-blockip:
-      plugin:
-        blockip:
-        # Blocked IPs and ranges
-          blockedIPs:
-            - "85.93.42.67"    
-        # Response configuration
-          statusCode: 403
-          message: "Your IP has been blocked"
-        # Cache configuration (in seconds)
-          cacheTTL: 300           # 5 minute cache
-        # Debug logging
-          debug: true
-
     my-geoblock:
       plugin:
         geoblock:
@@ -35,6 +21,20 @@ http:
           logApiRequests: "false"
           logLocalRequests: "false"
           unknownCountryApiResponse: nil
+    my-blockip:
+      plugin:
+        blockip:
+        # Blocked IPs and ranges
+          blockedIPs:
+            - "85.93.42.67"    
+        # Response configuration
+          statusCode: 403
+        #  message: "Your IP has been blocked"
+        # Cache configuration (in seconds)
+          cacheTTL: 300           # 5 minute cache
+        # Debug logging
+          debug: true
+
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
