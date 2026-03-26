@@ -3,39 +3,19 @@
 
 http:
   middlewares:
-middlewares:
-  blockip-advanced:
-    plugin:
-      blockip:
+    blockip:
+      plugin:
+        blockip:
         # Blocked IPs and ranges
-        blockedIPs:
-          - "85.93.42.67"
-        
-#        blockedCIDRs:
-#          - "192.168.0. 0/16"    # Entire subnet
-#          - "10.0. 0.0/8"        # Large range
-#          - "2001:db8::/32"     # IPv6 range
-        
-        # Whitelist (bypass blocking)
-#        whitelistIPs:
-#          - "127. 0.0.1"
-#          - "::1"
-#          - "10.0.0. 1"
-        
-#        whitelistCIDRs:
-#          - "192.168.1.0/24"    # Trusted subnet
-#          - "10.0. 0.0/16"       # Trusted network
-#          - "2001:db8:1::/48"   # IPv6 trusted range
-        
+          blockedIPs:
+            - "85.93.42.67"    
         # Response configuration
-        statusCode: 403
-        message: "Your IP has been blocked"
-        
+          statusCode: 403
+          message: "Your IP has been blocked"
         # Cache configuration (in seconds)
-        cacheTTL: 300           # 5 minute cache
-        
+          cacheTTL: 300           # 5 minute cache
         # Debug logging
-        debug: true
+          debug: true
 
     my-geoblock:
       plugin:
