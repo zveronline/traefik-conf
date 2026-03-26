@@ -3,7 +3,7 @@
 
 http:
   middlewares:
-    blockip:
+    my-blockip:
       plugin:
         blockip:
         # Blocked IPs and ranges
