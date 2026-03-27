@@ -30,7 +30,7 @@ http:
           - default-security-headers
           - error-pages
           - gzip
-#          - traefik-real-ip
+          - traefik-real-ip
 
     # Add automatically some security headers
     # Use with traefik.http.routers.myRouter.middlewares: "default-security-headers@file"
