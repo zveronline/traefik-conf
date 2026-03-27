@@ -9,7 +9,6 @@ http:
       priority: 1
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -23,7 +22,6 @@ http:
       rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -126,6 +124,7 @@ http:
       middlewares:
         - gzip@file
         - my-geoblock@file
+        - block-bad-ip@file
 #        - simple_ratelimit@file
       tls:
         certResolver: cloudflare
