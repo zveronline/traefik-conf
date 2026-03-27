@@ -126,7 +126,7 @@ http:
       middlewares:
         - gzip@file
         - my-geoblock@file
-#        - error-pages@file
+#        - simple_ratelimit@file
       tls:
         certResolver: cloudflare
         domains:

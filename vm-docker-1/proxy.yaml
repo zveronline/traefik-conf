@@ -1,0 +1,35 @@
+http:
+  # Add the router
+  routers:
+    ordinary:
+      entryPoints:
+        - websecure
+      service: traefik-4
+      rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`old.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
+      middlewares:
+        - gzip@file
+        - traefik-real-ip@file
+#        - simple_ratelimit@file
+      tls:
+    ordinary-http:
+      entryPoints:
+        - web
+      service: traefik-4-http
+      rule: "Host(`sessionserver.ordinary-minecraft.ru`)"
+      priority: 2000
+      middlewares:
+        - gzip@file
+        - traefik-real-ip@file
+
+  # Add the service
+  services:
+    traefik-4:
+      loadBalancer:
+        servers:
+        - url: https://10.3.1.3:443
+        passHostHeader: true
+    traefik-4-http:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.3:80
+        passHostHeader: true
