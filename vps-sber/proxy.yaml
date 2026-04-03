@@ -123,7 +123,7 @@ http:
       middlewares:
         - gzip@file
 #        - my-geoblock@file
-        - block-bad-ip@file
+#        - block-bad-ip@file
 #        - simple_ratelimit@file
       tls:
         certResolver: cloudflare
