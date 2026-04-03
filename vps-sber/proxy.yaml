@@ -115,7 +115,6 @@ http:
       priority: 2000
       middlewares:
         - gzip@file
-#        - my-geoblock@file
     ordinary:
       entryPoints:
         - websecure

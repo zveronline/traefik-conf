@@ -8,7 +8,6 @@ http:
       rule: "Host(`vps-sber.z-network.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -22,7 +21,6 @@ http:
       rule: "Host(`cudywrt.z-network.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -36,7 +34,6 @@ http:
       rule: "Host(`ha2.z-network.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -50,7 +47,6 @@ http:
       rule: "Host(`gw2.z-network.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -64,7 +60,6 @@ http:
       rule: "Host(`mcsm-sto2.z-network.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
@@ -78,7 +73,6 @@ http:
       rule: "Host(`mcsm-wss.zveronline.ru`)"
       middlewares:
         - gzip@file
-        - my-geoblock@file
       tls:
         certResolver: cloudflare
         domains:
