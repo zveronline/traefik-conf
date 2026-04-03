@@ -49,6 +49,7 @@ http:
           - error-pages
           - gzip
           - traefik-real-ip
+          - my-geoblock
 
     # Add automatically some security headers
     # Use with traefik.http.routers.myRouter.middlewares: "default-security-headers@file"
