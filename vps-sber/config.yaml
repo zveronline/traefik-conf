@@ -21,13 +21,13 @@ http:
 #          logApiRequests: "false"
 #          logLocalRequests: "false"
 #          unknownCountryApiResponse: nil
-    block-bad-ip:
-      ipAllowList:
-        sourceRange:
-          - "0.0.0.0/0"
-        ipStrategy:
-          excludedIPs:
-            - "85.93.42.67"
+#    block-bad-ip:
+#      ipAllowList:
+#        sourceRange:
+#          - "0.0.0.0/0"
+#        ipStrategy:
+#          excludedIPs:
+#            - "85.93.42.67"
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
