@@ -19,7 +19,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-4
-      rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`)"
+      rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`traefik-4.z-network.ru`)"
       middlewares:
         - gzip@file
       tls:
@@ -98,7 +98,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-kuber
-      rule: "Host(`traefik.z-network.ru`) || Host(`rancher.z-network.ru`)"
+      rule: "Host(`traefik.z-network.ru`)"
       middlewares:
         - default@file
       tls:
@@ -119,7 +119,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-4
-      rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`old.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
+      rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
       middlewares:
         - gzip@file
 #        - my-geoblock@file
