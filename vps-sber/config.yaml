@@ -3,24 +3,24 @@
 
 http:
   middlewares:
-    my-geoblock:
-      plugin:
-        geoblock:
-          allowLocalRequests: "true"
-          allowUnknownCountries: "false"
-          api: https://get.geojs.io/v1/ip/country/{ip}
-          apiTimeoutMs: "750"
-          cacheSize: "15"
-          blackListMode: false
-          countries:
-            - RU
-            - BY
-            - FI
-          forceMonthlyUpdate: "true"
-          logAllowedRequests: "false"
-          logApiRequests: "false"
-          logLocalRequests: "false"
-          unknownCountryApiResponse: nil
+#    my-geoblock:
+#      plugin:
+#        geoblock:
+#          allowLocalRequests: "true"
+#          allowUnknownCountries: "false"
+#          api: https://get.geojs.io/v1/ip/country/{ip}
+#          apiTimeoutMs: "750"
+#          cacheSize: "15"
+#          blackListMode: false
+#          countries:
+#            - RU
+#            - BY
+#            - FI
+#          forceMonthlyUpdate: "true"
+#          logAllowedRequests: "false"
+#          logApiRequests: "false"
+#          logLocalRequests: "false"
+#          unknownCountryApiResponse: nil
     block-bad-ip:
       ipAllowList:
         sourceRange:
