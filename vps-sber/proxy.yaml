@@ -5,6 +5,8 @@ http:
       rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) && ClientIP(`85.93.42.67`)"
       service: noop@internal
       priority: 1000
+      entryPoints:
+        - websecure
     znetwork:
       entryPoints:
         - websecure
