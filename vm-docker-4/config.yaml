@@ -14,24 +14,24 @@ http:
           trustedIPs:
             - "10.0.0.0/8"
             - "176.108.248.229/32"
-    my-geoblock:
-      plugin:
-        geoblock:
-          allowLocalRequests: "true"
-          allowUnknownCountries: "false"
-          api: https://get.geojs.io/v1/ip/country/{ip}
-          apiTimeoutMs: "750"
-          cacheSize: "15"
-          blackListMode: false
-          countries:
-            - RU
-            - BY
-            - FI
-          forceMonthlyUpdate: "true"
-          logAllowedRequests: "false"
-          logApiRequests: "false"
-          logLocalRequests: "false"
-          unknownCountryApiResponse: nil
+#    my-geoblock:
+#      plugin:
+#        geoblock:
+#          allowLocalRequests: "true"
+#          allowUnknownCountries: "false"
+#          api: https://get.geojs.io/v1/ip/country/{ip}
+#          apiTimeoutMs: "750"
+#          cacheSize: "15"
+#          blackListMode: false
+#          countries:
+#            - RU
+#            - BY
+#            - FI
+#          forceMonthlyUpdate: "true"
+#          logAllowedRequests: "false"
+#          logApiRequests: "false"
+#          logLocalRequests: "false"
+#          unknownCountryApiResponse: nil
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
@@ -49,7 +49,6 @@ http:
           - error-pages
           - gzip
           - traefik-real-ip
-          - my-geoblock
 
     # Add automatically some security headers
     # Use with traefik.http.routers.myRouter.middlewares: "default-security-headers@file"
