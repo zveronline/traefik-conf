@@ -117,7 +117,7 @@ http:
       entryPoints:
         - web
       service: traefik-1-http
-      rule: "Host(`lampac.zveronline.ru`) || Host(`lampa.zveronline.ru`)"
+      rule: "Host(`alpac.zveronline.ru`)"
       priority: 2000
       middlewares:
         - gzip@file
