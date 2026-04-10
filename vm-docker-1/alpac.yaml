@@ -1,0 +1,28 @@
+http:
+  # Add the router
+  routers:
+    alpac:
+      entryPoints:
+        - websecure
+      service: alpac
+      rule: "Host(`alpac.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+
+    alpac-http:
+      entryPoints:
+        - web
+      service: alpac
+      rule: "Host(`alpac.zveronline.ru`)"
+      priority: 2000
+      middlewares:
+        - gzip@file
+
+  # Add the service
+  services:
+    alpac:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.4:18118/
+        passHostHeader: true

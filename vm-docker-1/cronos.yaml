@@ -9,11 +9,6 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
 
   # Add the service
   services:
