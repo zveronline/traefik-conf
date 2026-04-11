@@ -152,13 +152,13 @@ http:
     traefik-1:
       loadBalancer:
         servers:
-        - url: https://10.3.1.12:443
+        - url: https://10.3.1.13:443
 #          - url: https://85.93.42.67:443
         passHostHeader: true
     traefik-1-http:
       loadBalancer:
         servers:
-        - url: http://10.3.1.12:80
+        - url: http://10.3.1.13:80
         passHostHeader: true
     traefik-kuber:
       loadBalancer:
