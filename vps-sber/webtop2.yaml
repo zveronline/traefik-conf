@@ -1,0 +1,19 @@
+http:
+  # Add the router
+  routers:
+    webtop2:
+      entryPoints:
+        - websecure
+      service: vm-docker-4
+      rule: "Host(`webtop2.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+
+  # Add the service
+  services:
+    vm-docker-4:
+      loadBalancer:
+        servers:
+        - url: https://10.5.1.4:443/
+        passHostHeader: true
