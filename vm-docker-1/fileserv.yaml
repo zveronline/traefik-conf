@@ -1,0 +1,11 @@
+http:
+  # Add the router
+  routers:
+    file:
+      entryPoints:
+        - websecure
+      service: traefik-4
+      rule: "Host(`file.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
