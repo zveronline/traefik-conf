@@ -15,7 +15,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-4
-      rule: "Host(`jelly.zveronline.ru`)"
+      rule: "Host(`jelly.zveronline.ru`) || Host(`tube.zveronline.ru`)"
       middlewares:
         - gzip@file
 #        - traefik-real-ip@file
