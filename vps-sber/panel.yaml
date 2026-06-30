@@ -40,6 +40,19 @@ http:
           - main: "z-network.ru"
             sans:
               - "*.z-network.ru"
+    beryl:
+      entryPoints:
+        - websecure
+      service: beryl
+      rule: "Host(`beryl.z-network.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+        certResolver: cloudflare
+        domains:
+          - main: "z-network.ru"
+            sans:
+              - "*.z-network.ru"
     ha2:
       entryPoints:
         - websecure
@@ -121,6 +134,12 @@ http:
       loadBalancer:
         servers:
         - url: http://10.7.1.1:80
+#        - url: http://10.242.191.88:80
+        passHostHeader: true
+    beryl:
+      loadBalancer:
+        servers:
+        - url: http://10.7.4.1:80
 #        - url: http://10.242.191.88:80
         passHostHeader: true
     mcsm-sto2:
