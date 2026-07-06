@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    - certFile: /acme.sh/z-network.ru_ecc/fullchain.cer
+      keyFile: /acme.sh/z-network.ru_ecc/z-network.ru.key
