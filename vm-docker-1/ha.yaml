@@ -15,6 +15,5 @@ http:
     ha:
       loadBalancer:
         servers:
-#        - url: http://10.3.1.5:8123/
-        - http://10.3.0.8:8123/
+        - url: http://10.3.1.5:8123/
         passHostHeader: true
