@@ -1,7 +1,7 @@
 tls:
   certificates:
     - certFile: /acme.sh/egos-vl.ru_ecc/fullchain.cer
-      keyFile: /acme.sh/egos-vl.ru_ecc/z-network.ru.key
+      keyFile: /acme.sh/egos-vl.ru_ecc/egos-vl.ru.key
     - certFile: /acme.sh/zveronline.ru_ecc/fullchain.cer
       keyFile: /acme.sh/zveronline.ru_ecc/zveronline.ru.key
     - certFile: /acme.sh/ordinary-minecraft.ru_ecc/fullchain.cer
