@@ -139,7 +139,7 @@ http:
     traefik-1:
       loadBalancer:
         servers:
-        - url: https://10.3.1.13:443
+        - url: https://10.22.200.253:9443
 #          - url: https://85.93.42.67:443
         passHostHeader: true
     traefik-1-http:
