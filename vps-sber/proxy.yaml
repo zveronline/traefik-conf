@@ -150,7 +150,7 @@ http:
     traefik-4:
       loadBalancer:
         servers:
-        - url: https://10.3.1.3:443
+        - url: https://10.22.200.253:9002
         passHostHeader: true
     traefik-4-http:
       loadBalancer:
