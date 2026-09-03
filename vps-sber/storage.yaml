@@ -9,11 +9,7 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
+
     sto2-443:
       entryPoints:
         - websecure
@@ -22,11 +18,15 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
+
+    drive:
+      entryPoints:
+        - websecure
+      service: sto-443
+      rule: "Host(`drive.zveronline.ru`)"
+      middlewares:
+        - default@file
+      tls:
 
   # Add the service
   services:
@@ -39,4 +39,9 @@ http:
       loadBalancer:
         servers:
           - url: https://10.5.0.100
+        passHostHeader: true
+    sto-443:
+      loadBalancer:
+        servers:
+          - url: https://10.3.0.100
         passHostHeader: true

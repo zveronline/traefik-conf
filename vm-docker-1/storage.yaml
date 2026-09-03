@@ -19,6 +19,14 @@ http:
         - gzip@file
       tls:
 
+    drive:
+      entryPoints:
+        - websecure
+      service: sto-443
+      rule: "Host(`drive.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
   # Add the service
   services:
     sto:
@@ -30,4 +38,9 @@ http:
       loadBalancer:
         servers:
         - url: https://10.3.0.102/
+        passHostHeader: true
+    sto-443:
+      loadBalancer:
+        servers:
+          - url: https://10.3.0.100
         passHostHeader: true
