@@ -9,11 +9,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
+
     gw2:
       entryPoints:
         - websecure
@@ -22,11 +18,6 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
               
   # Add the service
   services:
@@ -38,6 +29,5 @@ http:
     gw2:
       loadBalancer:
         servers:
-#        - url: http://10.242.255.245:80
         - url: http://10.5.0.1:80
         passHostHeader: true
