@@ -9,11 +9,6 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "k3kw.ru"
-            sans:
-              - "*.k3kw.ru"
 
   # Add the service
   services:
