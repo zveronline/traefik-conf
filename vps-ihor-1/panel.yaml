@@ -25,14 +25,6 @@ http:
       middlewares:
         - gzip@file
       tls:
-    obsidian:
-      entryPoints:
-        - websecure
-      service: obsidian
-      rule: "Host(`obsidian.k3kw.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
     proxmox:
       entryPoints:
         - websecure
@@ -58,11 +50,6 @@ http:
       loadBalancer:
         servers:
         - url: http://192.168.1.1:80
-        passHostHeader: true
-    obsidian:
-      loadBalancer:
-        servers:
-        - url: http://192.168.1.85:8123
         passHostHeader: true
     proxmox:
       loadBalancer:
