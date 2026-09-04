@@ -67,5 +67,5 @@ http:
     proxmox:
       loadBalancer:
         servers:
-        - url: https://192.168.10:8006
-        passHostHeader: true
+        - url: https://192.168.1.10:8006/
+        passHostHeader: false
