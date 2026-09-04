@@ -9,6 +9,30 @@ http:
       middlewares:
         - gzip@file
       tls:
+    ha:
+      entryPoints:
+        - websecure
+      service: ha
+      rule: "Host(`ha.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+    router:
+      entryPoints:
+        - websecure
+      service: router
+      rule: "Host(`r.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+    obsidian:
+      entryPoints:
+        - websecure
+      service: obsidian
+      rule: "Host(`obsidian.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
 
   # Add the service
   services:
@@ -16,4 +40,19 @@ http:
       loadBalancer:
         servers:
         - url: http://10.23.0.1:9090
+        passHostHeader: true
+    ha:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.111:8123
+        passHostHeader: true
+    router:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.1:80
+        passHostHeader: true
+    obsidian:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.85:8123
         passHostHeader: true
