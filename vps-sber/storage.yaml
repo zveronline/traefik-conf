@@ -1,15 +1,6 @@
 http:
   # Add the router
   routers:
-    sto2:
-      entryPoints:
-        - synology
-      service: sto2
-      rule: "Host(`sto2.z-network.ru`)"
-      middlewares:
-        - default@file
-      tls:
-
     sto2-443:
       entryPoints:
         - websecure
@@ -22,7 +13,7 @@ http:
     drive:
       entryPoints:
         - websecure
-      service: sto-443
+      service: traefik-1
       rule: "Host(`drive.zveronline.ru`)"
       middlewares:
         - default@file
@@ -30,18 +21,8 @@ http:
 
   # Add the service
   services:
-    sto2:
-      loadBalancer:
-        servers:
-          - url: https://10.5.0.100:5001
-        passHostHeader: true
     sto2-443:
       loadBalancer:
         servers:
           - url: https://10.5.0.100
-        passHostHeader: true
-    sto-443:
-      loadBalancer:
-        servers:
-          - url: https://10.3.0.100
         passHostHeader: true

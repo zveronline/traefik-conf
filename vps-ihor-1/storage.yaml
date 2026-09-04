@@ -1,0 +1,19 @@
+http:
+  # Add the router
+  routers:
+    s-443:
+      entryPoints:
+        - websecure
+      service: s-443
+      rule: "Host(`s.k3kw.ru`)"
+      middlewares:
+        - default@file
+      tls:
+
+  # Add the service
+  services:
+    s-443:
+      loadBalancer:
+        servers:
+          - url: https://192.168.1.85
+        passHostHeader: true
