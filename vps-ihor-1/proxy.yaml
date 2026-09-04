@@ -41,6 +41,14 @@ http:
       middlewares:
         - gzip@file
       tls:
+    torrent:
+      entryPoints:
+        - websecure
+      service: torrent
+      rule: "Host(`t.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
 
   services:
     obsidian:
@@ -67,4 +75,9 @@ http:
       loadBalancer:
         servers:
         - url: http://192.168.1.85:2283
+        passHostHeader: true
+    torrent:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.85:8085
         passHostHeader: true
