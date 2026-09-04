@@ -33,6 +33,14 @@ http:
       middlewares:
         - gzip@file
       tls:
+    proxmox:
+      entryPoints:
+        - websecure
+      service: proxmox
+      rule: "Host(`px.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
 
   # Add the service
   services:
@@ -55,4 +63,9 @@ http:
       loadBalancer:
         servers:
         - url: http://192.168.1.85:8123
+        passHostHeader: true
+    proxmox:
+      loadBalancer:
+        servers:
+        - url: https://192.168.10:8006
         passHostHeader: true
