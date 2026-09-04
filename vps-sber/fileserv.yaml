@@ -9,11 +9,6 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
 
   # Add the service
   services:

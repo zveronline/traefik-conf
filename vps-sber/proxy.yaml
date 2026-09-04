@@ -7,6 +7,7 @@ http:
       priority: 1000
       entryPoints:
         - websecure
+        
     znetwork:
       entryPoints:
         - websecure
@@ -16,11 +17,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
+
     znetwork-4:
       entryPoints:
         - websecure
@@ -29,11 +26,7 @@ http:
       middlewares:
         - gzip@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "z-network.ru"
-            sans:
-              - "*.z-network.ru"
+
     zveronline:
       entryPoints:
         - websecure
@@ -43,11 +36,7 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
+
     zveronline-4:
       entryPoints:
         - websecure
@@ -56,11 +45,7 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
+
     wordpress:
       entryPoints:
         - websecure
@@ -69,11 +54,7 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "zveronline.ru"
-            sans:
-              - "*.zveronline.ru"
+
     wordpress-astro:
       entryPoints:
         - websecure
@@ -82,11 +63,7 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "astro-kirov.ru"
-            sans:
-              - "*.astro-kirov.ru"
+
     tonargorn:
       entryPoints:
         - websecure
@@ -95,11 +72,7 @@ http:
       middlewares:
         - default@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "tonargorn.ru"
-            sans:
-              - "*.tonargorn.ru"
+
     vm-docker-1-http:
       entryPoints:
         - web
@@ -140,7 +113,6 @@ http:
       loadBalancer:
         servers:
         - url: https://10.22.200.253:9443
-#          - url: https://85.93.42.67:443
         passHostHeader: true
     traefik-1-http:
       loadBalancer:
