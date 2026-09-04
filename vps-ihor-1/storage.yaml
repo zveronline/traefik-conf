@@ -5,7 +5,7 @@ http:
       entryPoints:
         - websecure
       service: s-443
-      rule: "Host(`s.k3kw.ru`)"
+      rule: "Host(`s.k3kw.ru`) || Host(`f.k3kw.ru`) || Host(`d.k3kw.ru`) || Host(`ph.k3kw.ru`)"
       middlewares:
         - default@file
       tls:
