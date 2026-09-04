@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    - certFile: /acme2/k3kw.ru_ecc/fullchain.cer
+      keyFile: /acme2/k3kw.ru_ecc/k3kw.ru.key

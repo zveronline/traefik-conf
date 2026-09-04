@@ -5,20 +5,20 @@ http:
       entryPoints:
         - websecure
       service: openwrt
-      rule: "Host(`vps-ihor-2.z-network.ru`)"
+      rule: "Host(`vps.k3kw.ru`)"
       middlewares:
         - gzip@file
       tls:
         certResolver: cloudflare
         domains:
-          - main: "z-network.ru"
+          - main: "k3kw.ru"
             sans:
-              - "*.z-network.ru"
-              
+              - "*.k3kw.ru"
+
   # Add the service
   services:
     openwrt:
       loadBalancer:
         servers:
-        - url: http://10.22.0.1:9092
+        - url: http://10.23.0.1:9091
         passHostHeader: true
