@@ -1,14 +1,6 @@
 http:
   # Add the router
   routers:
-    obsidian:
-      entryPoints:
-        - websecure
-      service: obsidian
-      rule: "Host(`obsidian.k3kw.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
     webdav:
       entryPoints:
         - websecure
@@ -22,22 +14,6 @@ http:
         - websecure
       service: wordpress
       rule: "Host(`k3kw.ru`) || Host(`www.k3kw.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-    fileserv:
-      entryPoints:
-        - websecure
-      service: fileserv
-      rule: "Host(`c.k3kw.ru`)"
-      middlewares:
-        - gzip@file
-      tls:
-    immich:
-      entryPoints:
-        - websecure
-      service: immich
-      rule: "Host(`pics.k3kw.ru`)"
       middlewares:
         - gzip@file
       tls:
@@ -60,11 +36,6 @@ http:
       tls:
 
   services:
-    obsidian:
-      loadBalancer:
-        servers:
-        - url: http://192.168.1.85:5984
-        passHostHeader: true
     webdav:
       loadBalancer:
         servers:
@@ -74,16 +45,6 @@ http:
       loadBalancer:
         servers:
         - url: http://192.168.1.85:8083
-        passHostHeader: true
-    fileserv:
-      loadBalancer:
-        servers:
-        - url: http://192.168.1.85:8084
-        passHostHeader: true
-    immich:
-      loadBalancer:
-        servers:
-        - url: http://192.168.1.85:2283
         passHostHeader: true
     torrent:
       loadBalancer:
