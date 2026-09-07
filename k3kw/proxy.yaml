@@ -40,5 +40,5 @@ http:
     pbs:
       loadBalancer:
         servers:
-        - url: http://192.168.1.85:8007
-        passHostHeader: true
+        - url: https://192.168.1.85:8007
+        passHostHeader: false
