@@ -1,0 +1,19 @@
+http:
+  # Add the router
+  routers:
+    music:
+      entryPoints:
+        - websecure
+      service: music
+      rule: "Host(`music.zveronline.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+
+  # Add the service
+  services:
+    music:
+      loadBalancer:
+        servers:
+        - url: http://10.3.1.3:8095
+        passHostHeader: true
