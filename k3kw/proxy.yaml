@@ -17,6 +17,14 @@ http:
       middlewares:
         - gzip@file
       tls:
+    pbs:
+      entryPoints:
+        - websecure
+      service: pbs
+      rule: "Host(`pxb.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
 
   services:
     webdav:
@@ -28,4 +36,9 @@ http:
       loadBalancer:
         servers:
         - url: http://192.168.1.85:8085
+        passHostHeader: true
+    pbs:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.85:8007
         passHostHeader: true
