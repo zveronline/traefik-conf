@@ -1,0 +1,6 @@
+tls:
+  certificates:
+    - certFile: /acme/z-network.ru_ecc/fullchain.cer
+      keyFile: /acme/z-network.ru_ecc/z-network.ru.key
+    - certFile: /acme/zveronline.ru_ecc/fullchain.cer
+      keyFile: /acme/zveronline.ru_ecc/zveronline.ru.key
