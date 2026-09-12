@@ -1,0 +1,58 @@
+http:
+  # Add the router
+  routers:
+    openwrt:
+      entryPoints:
+        - websecure
+      service: openwrt
+      rule: "Host(`vps.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+    ha:
+      entryPoints:
+        - websecure
+      service: ha
+      rule: "Host(`ha.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+    router:
+      entryPoints:
+        - websecure
+      service: router
+      rule: "Host(`r.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+    proxmox:
+      entryPoints:
+        - websecure
+      service: proxmox
+      rule: "Host(`px.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+
+  # Add the service
+  services:
+    openwrt:
+      loadBalancer:
+        servers:
+        - url: http://10.23.0.1:9090
+        passHostHeader: true
+    ha:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.111:8123
+        passHostHeader: true
+    router:
+      loadBalancer:
+        servers:
+        - url: http://192.168.1.1:80
+        passHostHeader: true
+    proxmox:
+      loadBalancer:
+        servers:
+        - url: https://192.168.1.10:8006/
+        passHostHeader: false
