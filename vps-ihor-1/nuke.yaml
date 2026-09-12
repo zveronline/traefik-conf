@@ -1,0 +1,19 @@
+http:
+  # Add the router
+  routers:
+    ntraefik:
+      entryPoints:
+        - websecure
+      service: ntraefik
+      rule: "Host(`ntraefik.k3kw.ru`)"
+      middlewares:
+        - gzip@file
+      tls:
+
+  # Add the service
+  services:
+    ntraefik:
+      loadBalancer:
+        servers:
+        - url: https://192.168.1.112:443
+        passHostHeader: true
