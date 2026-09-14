@@ -73,6 +73,15 @@ http:
         - default@file
       tls:
 
+    traefik-sto2:
+      entryPoints:
+        - websecure
+      service: traefik-sto2
+      rule: "Host(`sync2.z-network.ru`) || Host(`traefik-sto2.z-network.ru`) || Host(`torrserv2.z-network.ru`) || Host(`file2.zveronline.ru`)"
+      middlewares:
+        - default@file
+      tls:
+
     vm-docker-1-http:
       entryPoints:
         - web
@@ -128,4 +137,9 @@ http:
       loadBalancer:
         servers:
         - url: http://10.3.1.3:80
+        passHostHeader: true
+    traefik-sto2:
+      loadBalancer:
+        servers:
+        - url: https://10.5.0.100:9443
         passHostHeader: true
