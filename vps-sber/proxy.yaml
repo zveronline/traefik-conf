@@ -77,7 +77,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-sto2
-      rule: "Host(`sync2.z-network.ru`) || Host(`traefik-sto2.z-network.ru`) || Host(`torrserv2.z-network.ru`) || Host(`file2.zveronline.ru`)"
+      rule: "Host(`traefik-sto2.z-network.ru`) || Host(`file2.zveronline.ru`)"
       middlewares:
         - default@file
       tls:

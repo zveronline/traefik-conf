@@ -5,7 +5,7 @@ http:
       entryPoints:
         - websecure
       service: sto2-443
-      rule: "Host(`sto2.z-network.ru`)"
+      rule: "Host(`sto2.z-network.ru`) || Host(`sync2.z-network.ru`) || Host(`torrserv2.z-network.ru`)"
       middlewares:
         - default@file
       tls:
