@@ -7,7 +7,7 @@ http:
     forwardingTimeouts:
         responseHeaderTimeout: "0s"   # Отключает таймаут ожидания ответа
         dialTimeout: "30s"
-        idleConnTimeout: "120s"
+        idleConnTimeout: "180s"
   middlewares:
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
