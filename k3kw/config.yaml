@@ -4,9 +4,10 @@
 http:
   serversTransports:
     immich-transport:
-      forwardingTimeouts:
-        responseHeaderTimeout: "0s" # 0s отключает таймаут
+    forwardingTimeouts:
+        responseHeaderTimeout: "0s"   # Отключает таймаут ожидания ответа
         dialTimeout: "30s"
+        idleConnTimeout: "120s"
   middlewares:
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
