@@ -4,6 +4,7 @@
 http:
   serversTransports:
     immich-transport:
+      insecureSkipVerify: true
       forwardingTimeouts:
         responseHeaderTimeout: "0s" # 0s отключает таймаут
         dialTimeout: "30s"
