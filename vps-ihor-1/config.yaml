@@ -2,6 +2,11 @@
 # See https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-dynamic-configuration
 
 http:
+  serversTransports:
+    immich-transport:
+      forwardingTimeouts:
+        responseHeaderTimeout: "0s" # 0s отключает таймаут
+        dialTimeout: "30s"
   middlewares:
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
