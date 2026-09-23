@@ -5,6 +5,8 @@ http:
   serversTransports:
     immich-transport:
       insecureSkipVerify: true
+      respondingTimeouts:
+        readTimeout: "0s"
       forwardingTimeouts:
         responseHeaderTimeout: "0s"   # Отключает таймаут ожидания ответа
         dialTimeout: "30s"
