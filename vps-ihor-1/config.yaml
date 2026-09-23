@@ -5,14 +5,12 @@ http:
   serversTransports:
     immich-transport:
       insecureSkipVerify: true
-      respondingTimeouts:
-        readTimeout: "0s"
       forwardingTimeouts:
         responseHeaderTimeout: "0s"   # Отключает таймаут ожидания ответа
         dialTimeout: "30s"
         idleConnTimeout: "180s"
   middlewares:
-    # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
+    # A basic authentification middleare, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
       basicAuth:
