@@ -3,31 +3,12 @@
 
 http:
   middlewares:
-#    my-geoblock:
-#      plugin:
-#        geoblock:
-#          allowLocalRequests: "true"
-#          allowUnknownCountries: "false"
-#          api: https://get.geojs.io/v1/ip/country/{ip}
-#          apiTimeoutMs: "750"
-#          cacheSize: "15"
-#          blackListMode: false
-#          countries:
-#            - RU
-#            - BY
-#            - FI
-#          forceMonthlyUpdate: "true"
-#          logAllowedRequests: "false"
-#          logApiRequests: "false"
-#          logLocalRequests: "false"
-#          unknownCountryApiResponse: nil
-#    block-bad-ip:
-#      ipAllowList:
-#        sourceRange:
-#          - "0.0.0.0/0"
-#        ipStrategy:
-#          excludedIPs:
-#            - "85.93.42.67"
+    compress-all:
+      compress:
+        encodings:
+          - br
+          - zstd
+          - gzip
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
@@ -42,7 +23,7 @@ http:
       chain:
         middlewares:
           - default-security-headers
-          - gzip
+          - compress-all
 
     # Add automatically some security headers
     # Use with traefik.http.routers.myRouter.middlewares: "default-security-headers@file"
@@ -57,14 +38,6 @@ http:
         stsIncludeSubdomains: true                        # Add includeSubdomains to the Strict-Transport-Security header
         stsPreload: true                                  # Add preload flag appended to the Strict-Transport-Security header
         stsSeconds: 63072000                              # Set the max-age of the Strict-Transport-Security header (63072000 = 2 years)
-
-    # Enables the GZIP compression (https://docs.traefik.io/middlewares/compress/)
-    #   if the response body is larger than 1400 bytes
-    #   if the Accept-Encoding request header contains gzip
-    #   if the response is not already compressed (Content-Encoding is not set)
-    # Use with traefik.http.routers.myRouter.middlewares: "gzip@file"
-    gzip:
-      compress: {}
 
 # See https://doc.traefik.io/traefik/https/tls/
 tls:
