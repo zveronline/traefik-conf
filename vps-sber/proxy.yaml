@@ -15,7 +15,7 @@ http:
       rule: "HostRegexp(`[a-z]+\\.z-network\\.ru`)"
       priority: 1
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     znetwork-4:
@@ -24,7 +24,7 @@ http:
       service: traefik-4
       rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`traefik-4.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     zveronline:
@@ -89,14 +89,14 @@ http:
       rule: "Host(`alpac.zveronline.ru`)"
       priority: 2000
       middlewares:
-        - gzip@file
+        - default@file
     ordinary:
       entryPoints:
         - websecure
       service: traefik-4
       rule: "Host(`ordinary-minecraft.ru`) || Host(`www.ordinary-minecraft.ru`) || Host(`wiki.ordinary-minecraft.ru`) || Host(`radio.ordinary-minecraft.ru`) || Host(`legacy.ordinary-minecraft.ru`) || Host(`genesis.ordinary-minecraft.ru`) || Host(`bans.ordinary-minecraft.ru`) || Host(`inferno.ordinary-minecraft.ru`) || Host(`portal.ordinary-minecraft.ru`) || Host(`video.ordinary-minecraft.ru`) || Host(`sessionserver.ordinary-minecraft.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
 #        - my-geoblock@file
 #        - block-bad-ip@file
 #        - simple_ratelimit@file
@@ -113,7 +113,7 @@ http:
       rule: "Host(`sessionserver.ordinary-minecraft.ru`)"
       priority: 2000
       middlewares:
-        - gzip@file
+        - default@file
 #        - my-geoblock@file
 
   # Add the service

@@ -7,7 +7,7 @@ http:
       service: openwrt
       rule: "Host(`vps-sber.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     cudywrt:
@@ -16,7 +16,7 @@ http:
       service: cudywrt
       rule: "Host(`cudywrt.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     cudy2:
@@ -25,7 +25,7 @@ http:
       service: cudy2
       rule: "Host(`cudy2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     m3000:
@@ -34,7 +34,7 @@ http:
       service: m3000
       rule: "Host(`m3000.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     archer:
@@ -43,7 +43,7 @@ http:
       service: archer
       rule: "Host(`archer.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     beryl:
@@ -52,7 +52,7 @@ http:
       service: beryl
       rule: "Host(`beryl.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     ha2:
@@ -61,7 +61,7 @@ http:
       service: ha2
       rule: "Host(`ha2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     gw2:
@@ -70,7 +70,7 @@ http:
       service: gw2
       rule: "Host(`gw2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     mcsm-sto2:
@@ -79,7 +79,7 @@ http:
       service: mcsm-sto2
       rule: "Host(`mcsm-sto2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     mcsm-wss:
@@ -88,7 +88,7 @@ http:
       service: mcsm-wss
       rule: "Host(`mcsm-wss.zveronline.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
               
   # Add the service
