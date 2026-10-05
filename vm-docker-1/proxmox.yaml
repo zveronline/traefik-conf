@@ -7,7 +7,7 @@ http:
       service: pve1
       rule: "Host(`pve1.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     pve2:
@@ -16,7 +16,7 @@ http:
       service: pve2
       rule: "Host(`pve2.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
   # Add the service

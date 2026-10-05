@@ -7,7 +7,7 @@ http:
       service: sto
       rule: "Host(`sto.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     sto3:
@@ -16,7 +16,7 @@ http:
       service: sto3
       rule: "Host(`sto3.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     drive:
@@ -25,7 +25,7 @@ http:
       service: sto-443
       rule: "Host(`drive.zveronline.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
   # Add the service
   services:

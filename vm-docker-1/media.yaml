@@ -7,7 +7,7 @@ http:
       service: music
       rule: "Host(`music.zveronline.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
   # Add the service

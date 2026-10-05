@@ -7,7 +7,7 @@ http:
       service: cronos
       rule: "Host(`cronos.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
   # Add the service

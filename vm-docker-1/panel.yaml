@@ -7,7 +7,7 @@ http:
       service: linstor-gw
       rule: "Host(`linstor-gw.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     linstor:
@@ -16,7 +16,7 @@ http:
       service: linstor
       rule: "Host(`linstor.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
     openwrt:
@@ -25,7 +25,7 @@ http:
       service: openwrt
       rule: "Host(`gw.z-network.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
 

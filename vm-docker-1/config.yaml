@@ -3,17 +3,12 @@
 
 http:
   middlewares:
-#    traefik-real-ip:
-#      plugin:
-#        traefik-real-ip:
-#          thrustLocal: true
-#          thrustCloudFlare: true
-#          thrustEdgeOne: false
-#          logLevel: info
-#          denyUntrusted: false
-#          trustedIPs:
-#            - "10.0.0.0/8"
-#            - "176.108.248.229/32"
+    compress-all:
+      compress:
+        encodings:
+          - br
+          - zstd
+          - gzip
     # A basic authentification middleware, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
@@ -28,7 +23,7 @@ http:
       chain:
         middlewares:
           - default-security-headers
-          - gzip
+          - compress-all
 #          - traefik-real-ip
 
     # Add automatically some security headers
@@ -44,14 +39,6 @@ http:
         stsIncludeSubdomains: true                        # Add includeSubdomains to the Strict-Transport-Security header
         stsPreload: true                                  # Add preload flag appended to the Strict-Transport-Security header
         stsSeconds: 63072000                              # Set the max-age of the Strict-Transport-Security header (63072000 = 2 years)
-
-    # Enables the GZIP compression (https://docs.traefik.io/middlewares/compress/)
-    #   if the response body is larger than 1400 bytes
-    #   if the Accept-Encoding request header contains gzip
-    #   if the response is not already compressed (Content-Encoding is not set)
-    # Use with traefik.http.routers.myRouter.middlewares: "gzip@file"
-    gzip:
-      compress: {}
 
 # See https://doc.traefik.io/traefik/https/tls/
 tls:
