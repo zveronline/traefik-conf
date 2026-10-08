@@ -9,13 +9,14 @@ http:
         responseHeaderTimeout: "0s"   # Отключает таймаут ожидания ответа
         dialTimeout: "30s"
         idleConnTimeout: "180s"
+
+  middlewares:
     compress-all:
       compress:
         encodings:
           - br
           - zstd
           - gzip
-  middlewares:
     # A basic authentification middleare, to protect the Traefik dashboard to anyone except myself
     # Use with traefik.http.routers.myRouter.middlewares: "traefikAuth@file"
     traefikAuth:
