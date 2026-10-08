@@ -7,7 +7,7 @@ http:
       service: openwrt
       rule: "Host(`vps.k3kw.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
     ha:
       entryPoints:
@@ -15,7 +15,7 @@ http:
       service: ha
       rule: "Host(`ha.k3kw.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
     router:
       entryPoints:
@@ -23,7 +23,7 @@ http:
       service: router
       rule: "Host(`r.k3kw.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
     proxmox:
       entryPoints:
@@ -31,7 +31,7 @@ http:
       service: proxmox
       rule: "Host(`px.k3kw.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
   # Add the service

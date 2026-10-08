@@ -7,7 +7,7 @@ http:
       service: ntraefik
       rule: "Host(`ntraefik.k3kw.ru`) || Host(`pass.k3kw.ru`) || Host(`k3kw.ru`) || Host(`www.k3kw.ru`) || Host(`mysql.k3kw.ru`)"
       middlewares:
-        - gzip@file
+        - default@file
       tls:
 
   # Add the service
