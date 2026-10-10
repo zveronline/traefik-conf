@@ -8,3 +8,5 @@ tls:
       keyFile: /acme.sh/z-network.ru_ecc/z-network.ru.key
     - certFile: /acme.sh/ordinary-minecraft.ru_ecc/fullchain.cer
       keyFile: /acme.sh/ordinary-minecraft.ru_ecc/ordinary-minecraft.ru.key
+    - certFile: /acme.sh/astro-kirov.ru_ecc/fullchain.cer
+      keyFile: /acme.sh/astro-kirov.ru_ecc/astro-kirov.ru.key
