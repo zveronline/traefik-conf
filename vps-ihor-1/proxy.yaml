@@ -11,23 +11,10 @@ http:
         - default@file
       tls:
 
-    vless:
-      entryPoints:
-        - websecure
-      service: vless
-      rule: "Host(`speedtest.zveronline.ru`) && PathPrefix(`/video/download/fragment`)"
-      tls:
-
   services:
     straefik:
       loadBalancer:
         serversTransport: immich-transport@file
         servers:
         - url: https://192.168.1.85:9443
-        passHostHeader: true
-
-    vless:
-      loadBalancer:
-        servers:
-        - url: http://3x-ui:2443
         passHostHeader: true

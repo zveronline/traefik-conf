@@ -116,13 +116,6 @@ http:
         - default@file
 #        - my-geoblock@file
 
-    vless:
-      entryPoints:
-        - websecure
-      service: vless
-      rule: "Host(`astro-kirov.ru`) && PathPrefix(`/video/download/fragment`)"
-      tls:
-
   # Add the service
   services:
     traefik-1:
@@ -151,9 +144,4 @@ http:
       loadBalancer:
         servers:
         - url: https://10.5.0.100:9443
-        passHostHeader: true
-    vless:
-      loadBalancer:
-        servers:
-        - url: http://3x-ui:2443
         passHostHeader: true
