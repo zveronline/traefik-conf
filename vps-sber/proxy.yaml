@@ -82,13 +82,6 @@ http:
         - default@file
       tls:
 
-    telemt2:
-      entryPoints:
-        - websecure
-      service: telemt2
-      rule: "Host(`mario.zveronline.ru`) && PathPrefix(`/web`)"
-      tls:
-
     vm-docker-1-http:
       entryPoints:
         - web
@@ -151,9 +144,4 @@ http:
       loadBalancer:
         servers:
         - url: https://10.5.0.100:9443
-        passHostHeader: true
-    telemt2:
-      loadBalancer:
-        servers:
-        - url: http://telemt2:10808
         passHostHeader: true
