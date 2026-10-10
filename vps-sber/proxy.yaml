@@ -69,6 +69,7 @@ http:
         - websecure
       service: traefik-1
       rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      priority: 1
       middlewares:
         - default@file
       tls:
