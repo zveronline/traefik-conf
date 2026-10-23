@@ -6,3 +6,5 @@ tls:
       keyFile: /acme/zveronline.ru_ecc/zveronline.ru.key
     - certFile: /acme/z-network.ru_ecc/fullchain.cer
       keyFile: /acme/z-network.ru_ecc/z-network.ru.key
+    - certFile: /acme.sh/astro-kirov.ru_ecc/fullchain.cer
+      keyFile: /acme.sh/astro-kirov.ru_ecc/astro-kirov.ru.key
