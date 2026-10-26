@@ -13,6 +13,6 @@ http:
   middlewares:
     help-redirect:
       redirectRegex:
-        regex: "^https?://help\.doronichi\.info/.*"
+        regex: '^https?://help.doronichi.info/.*'
         replacement: "https://help.doronichi.com/zni"
         permanent: true
