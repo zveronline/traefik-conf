@@ -1,0 +1,18 @@
+http:
+  routers:
+    help-redirect:
+      entryPoints:
+        - websecure
+      service: noop@internal
+      rule: "Host(`help.doronichi.info`)"
+      middlewares:
+        - help-redirect
+      tls:
+        certResolver: letsencrypt
+
+  middlewares:
+    help-redirect:
+      redirectRegex:
+        regex: "^https?://help\.doronichi\.info/.*"
+        replacement: "https://help.doronichi.com/zni"
+        permanent: true

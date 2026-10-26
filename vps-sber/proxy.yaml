@@ -102,11 +102,7 @@ http:
 #        - block-bad-ip@file
 #        - simple_ratelimit@file
       tls:
-        certResolver: cloudflare
-        domains:
-          - main: "ordinary-minecraft.ru"
-            sans:
-              - "*.ordinary-minecraft.ru"
+
     ordinary-http:
       entryPoints:
         - web
