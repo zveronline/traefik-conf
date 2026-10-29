@@ -41,7 +41,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-4
-      rule: "Host(`file.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`book.zveronline.ru`) || Host(`s1.zveronline.ru`) || Host(`alpac.zveronline.ru`)"
+      rule: "Host(`file.zveronline.ru`) || Host(`gpt.zveronline.ru`) || Host(`jelly.zveronline.ru`) || Host(`kiwix.zveronline.ru`) || Host(`peertube.zveronline.ru`) || Host(`tube.zveronline.ru`) || Host(`book.zveronline.ru`) || Host(`s1.zveronline.ru`) || Host(`alpac.zveronline.ru`) || Host(`nextcloud.zveronline.ru`) || Host(`onlyoffice.zveronline.ru`)"
       middlewares:
         - default@file
       tls:
