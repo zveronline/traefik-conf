@@ -76,7 +76,7 @@ http:
     gw:
       entryPoints:
         - websecure
-      service: frp
+      service: frps
       rule: "Host(`gw.z-network.ru`)"
       middlewares:
         - default@file
@@ -155,8 +155,8 @@ http:
         servers:
         - url: http://10.0.23.9:80
         passHostHeader: true
-    frp:
+    frps:
       loadBalancer:
         servers:
-        - url: http://frp:8080
+        - url: http://frps:8080
         passHostHeader: true
