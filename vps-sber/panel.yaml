@@ -73,6 +73,15 @@ http:
         - default@file
       tls:
 
+    gw:
+      entryPoints:
+        - websecure
+      service: frp
+      rule: "Host(`gw.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+
     mcsm-sto2:
       entryPoints:
         - websecure
@@ -145,4 +154,9 @@ http:
       loadBalancer:
         servers:
         - url: http://10.0.23.9:80
+        passHostHeader: true
+    frp:
+      loadBalancer:
+        servers:
+        - url: http://frp:8080
         passHostHeader: true
