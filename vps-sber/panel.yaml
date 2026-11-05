@@ -67,8 +67,17 @@ http:
     gw2:
       entryPoints:
         - websecure
-      service: gw2
+      service: frps
       rule: "Host(`gw2.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+
+    wr3000u:
+      entryPoints:
+        - websecure
+      service: frps
+      rule: "Host(`wr3000u.z-network.ru`)"
       middlewares:
         - default@file
       tls:
