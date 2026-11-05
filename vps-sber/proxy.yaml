@@ -22,7 +22,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-4
-      rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`traefik-4.z-network.ru`)"
+      rule: "Host(`vscode.z-network.ru`) || Host(`torrserv.z-network.ru`) || Host(`traefik-4.z-network.ru`) || Host(`torrent.z-network.ru`)"
       middlewares:
         - default@file
       tls:
