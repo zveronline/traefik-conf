@@ -85,7 +85,7 @@ http:
     egos:
       entryPoints:
         - websecure
-      service: frps
+      service: egos
       rule: "Host(`egos.z-network.ru`)"
       middlewares:
         - default@file
