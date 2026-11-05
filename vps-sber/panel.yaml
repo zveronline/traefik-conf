@@ -82,6 +82,15 @@ http:
         - default@file
       tls:
 
+    egos:
+      entryPoints:
+        - websecure
+      service: frps
+      rule: "Host(`egos.z-network.ru`)"
+      middlewares:
+        - default@file
+      tls:
+
     gw:
       entryPoints:
         - websecure
@@ -111,10 +120,10 @@ http:
               
   # Add the service
   services:
-    openwrt:
+    egos:
       loadBalancer:
         servers:
-        - url: http://10.22.0.1:9092
+        - url: https://router.egos-vl.ru:9091
         passHostHeader: true
     ha2:
       loadBalancer:
