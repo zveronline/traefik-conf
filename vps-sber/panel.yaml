@@ -1,10 +1,10 @@
 http:
   # Add the router
   routers:
-    openwrt:
+    vps:
       entryPoints:
         - websecure
-      service: openwrt
+      service: vps
       rule: "Host(`vps-sber.z-network.ru`)"
       middlewares:
         - default@file
@@ -22,7 +22,7 @@ http:
     cudy2:
       entryPoints:
         - websecure
-      service: cudy2
+      service: frps
       rule: "Host(`cudy2.z-network.ru`)"
       middlewares:
         - default@file
@@ -130,11 +130,10 @@ http:
         servers:
         - url: http://10.5.1.1:8123
         passHostHeader: true
-    gw2:
+    vps:
       loadBalancer:
         servers:
-#        - url: http://10.242.255.245:80
-        - url: http://10.5.0.1:80
+        - url: http://10.0.23.2:9090
         passHostHeader: true
     cudywrt:
       loadBalancer:
