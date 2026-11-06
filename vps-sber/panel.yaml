@@ -133,7 +133,7 @@ http:
     vps:
       loadBalancer:
         servers:
-        - url: http://10.0.23.2:9090
+        - url: http://10.22.0.1:9092
         passHostHeader: true
     cudywrt:
       loadBalancer:
