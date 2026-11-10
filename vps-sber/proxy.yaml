@@ -68,7 +68,7 @@ http:
       entryPoints:
         - websecure
       service: traefik-1
-      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`) || Host(`origin.tonargorn.ru`)"
       priority: 1
       middlewares:
         - default@file
