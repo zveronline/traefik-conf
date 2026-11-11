@@ -10,9 +10,25 @@ http:
       tls:
         certResolver: letsencrypt
 
+    pass-redirect:
+      entryPoints:
+        - websecure
+      service: noop@internal
+      rule: "Host(`pw.doronichi.info`)"
+      middlewares:
+        - pass-redirect
+      tls:
+        certResolver: letsencrypt
+
   middlewares:
     help-redirect:
       redirectRegex:
         regex: '^https?://help.doronichi.info/.*'
         replacement: "https://help.doronichi.com/zni"
+        permanent: true
+
+    pass-redirect:
+      redirectRegex:
+        regex: '^https?://pw.doronichi.info/.*'
+        replacement: "https://mail.doronichi.com/ecp/?rfr=owa&owaparam=modurl%3D0&p=account"
         permanent: true
