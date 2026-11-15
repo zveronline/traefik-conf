@@ -13,7 +13,7 @@ http:
     cudywrt:
       entryPoints:
         - websecure
-      service: cudywrt
+      service: frps
       rule: "Host(`cudywrt.z-network.ru`)"
       middlewares:
         - default@file
@@ -107,11 +107,6 @@ http:
       loadBalancer:
         servers:
         - url: http://10.22.0.1:9092
-        passHostHeader: true
-    cudywrt:
-      loadBalancer:
-        servers:
-        - url: http://10.0.23.6:80
         passHostHeader: true
     beryl:
       loadBalancer:
