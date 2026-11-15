@@ -1,0 +1,15 @@
+tcp:
+  routers:
+    vless-tachyon:
+      rule: "HostSNI(i.tonargorn.ru)"
+      entryPoints:
+        - websecure
+      service: vless-tachyon
+      tls:
+      passthrough: true
+
+  services:
+    vless-tachyon:
+      loadBalancer:
+        servers:
+          - address: "10.23.0.1:9009"
