@@ -8,3 +8,5 @@ tls:
       keyFile: /acme/z-network.ru_ecc/z-network.ru.key
     - certFile: /acme/astro-kirov.ru_ecc/fullchain.cer
       keyFile: /acme/astro-kirov.ru_ecc/astro-kirov.ru.key
+    - certFile: /acme/tonargorn.ru_ecc/fullchain.cer
+      keyFile: /acme/tonargorn.ru_ecc/tonargorn.ru.key

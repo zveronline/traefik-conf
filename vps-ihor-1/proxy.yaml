@@ -11,10 +11,25 @@ http:
         - default@file
       tls:
 
+    tonargorn:
+      entryPoints:
+        - websecure
+      service: frps
+      rule: "Host(`tonargorn.ru`) || Host(`www.tonargorn.ru`) || Host(`auth.tonargorn.ru`)"
+      priority: 1
+      middlewares:
+        - default@file
+      tls:
+
   services:
     straefik:
       loadBalancer:
         serversTransport: immich-transport@file
         servers:
         - url: https://192.168.1.85:9443
+        passHostHeader: true
+    frps:
+      loadBalancer:
+        servers:
+        - url: https://frps:8443
         passHostHeader: true
