@@ -6,7 +6,7 @@ tcp:
         - websecure
       service: vless-tachyon
       tls:
-      passthrough: true
+        passthrough: true
 
   services:
     vless-tachyon:
